@@ -1,25 +1,3 @@
-.hidden {
-  display: none;
-}
-
-.w-16 {
-  width: 4rem;
-}
-
-.rounded-lg {
-  border-radius: 0.5rem;
-}
-
-.bg-slate-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(100 116 139 / var(--tw-bg-opacity));
-}
-
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-
 /*
 ! tailwindcss v3.4.4 | MIT License | https://tailwindcss.com
 */
