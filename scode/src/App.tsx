@@ -1,6 +1,9 @@
 import React from 'react';
 import { logo } from './util/logo';
-import FM from './code/type/FM';
+import SCFrama from './code/type/SCFrama';
+import AlphaTemplate from './code/alpha_template/Template';
+import format_str from './util/format_str';
+import SCMorse from './code/type/SCMorse';
 
 function App() {
   return (
@@ -10,7 +13,7 @@ function App() {
         <h1>SCode</h1>
         <div>
           {
-            new FM().codificar("INDO BEM!")
+            new SCMorse().codificar(AlphaTemplate.voisin(format_str("Eu te amo muito, Sarah!")))
           }
         </div>
       </header>

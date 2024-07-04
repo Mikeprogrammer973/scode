@@ -1,6 +1,6 @@
 import Code from "../Code";
 
-export default class FM extends Code
+export default class SCFrama extends Code
 {
     constructor()
     {
@@ -9,6 +9,6 @@ export default class FM extends Code
     }
     
     private initSymbols() {
-        console.log("OK>>>")
+        
     }
 }

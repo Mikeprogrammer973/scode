@@ -4,16 +4,10 @@ import { JSX } from "react";
 
 export default abstract class Code implements ICode
 {
-
-    public alpha_ref: string[] = alphabet
     protected symbols: string[] = []
 
-    private formatInput(input: string): string {
-        return input
-    }
-
-    private formatOutput(output: string[]): JSX.Element {
-        return <div>{output[0]}</div>
+    private formatOutput(output: string): JSX.Element {
+        return <div>{output}</div>
     }
 
     /**
@@ -21,11 +15,16 @@ export default abstract class Code implements ICode
         msg: string : string[]    
     */
     public codificar(msg: string): JSX.Element {
-        let input: string = this.formatInput(msg) 
-        //Coding
-        ///////////////
-        let result: JSX.Element = this.formatOutput([input]) 
-        console.log(result)
+        let coded_msg = ""
+
+        for(let i = 0; i < msg.length; i++)
+        {
+            coded_msg += ( msg[i] == " " ? "***" : this.symbols[alphabet.indexOf(msg[i])])
+            if(i < (msg.length - 1)) coded_msg += " / "
+        }
+
+        let result: JSX.Element = this.formatOutput(coded_msg) 
+        console.log(this.symbols)
         return result
     }
 }
