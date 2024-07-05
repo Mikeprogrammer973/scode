@@ -1,6 +1,7 @@
 import { alphabet } from "../../util/alphabet_reference"
+import { ponctuations } from "../../util/ponctuation_ref"
 
-export default class AlphaTemplate
+export default class MutationTemplate
 {
     static normal(msg: string): string
     {
@@ -13,7 +14,7 @@ export default class AlphaTemplate
 
         for(let i = 0; i < msg.length; i++)
         {
-            formated_msg += ( msg[i] == " " ? " " : alphabet[(26-alphabet.indexOf(msg[i]))-1])
+            formated_msg += (ponctuations.indexOf(msg[i]) != -1 ? msg[i] : alphabet[(26-alphabet.indexOf(msg[i]))-1])
         }
 
         return formated_msg
@@ -25,7 +26,7 @@ export default class AlphaTemplate
 
         for(let i = 0; i < msg.length; i++)
         {
-            formated_msg += ( msg[i] == " " ? " " : alphabet[(alphabet.indexOf(msg[i]) == 25 ? 0 : (alphabet.indexOf(msg[i]) + 1) )])
+            formated_msg += (ponctuations.indexOf(msg[i]) != -1 ? msg[i]  : alphabet[(alphabet.indexOf(msg[i]) == 25 ? 0 : (alphabet.indexOf(msg[i]) + 1) )])
         }
 
         return formated_msg

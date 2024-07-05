@@ -1,4 +1,5 @@
 import { alphabet } from "../util/alphabet_reference";
+import { ponctuations } from "../util/ponctuation_ref";
 import ICode from "./ICode";
 import { JSX } from "react";
 
@@ -19,8 +20,8 @@ export default abstract class Code implements ICode
 
         for(let i = 0; i < msg.length; i++)
         {
-            coded_msg += ( msg[i] == " " ? "***" : this.symbols[alphabet.indexOf(msg[i])])
-            if(i < (msg.length - 1)) coded_msg += " / "
+            if(i > 0) coded_msg += " / "
+            coded_msg += ( ponctuations.indexOf(msg[i]) != -1 ? (msg[i] == " " ? "***" : msg[i]) : this.symbols[alphabet.indexOf(msg[i])])
         }
 
         let result: JSX.Element = this.formatOutput(coded_msg) 
