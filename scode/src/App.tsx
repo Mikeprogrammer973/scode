@@ -6,6 +6,7 @@ import format_str from './util/format_str';
 import SCMorse from './code/type/SCMorse';
 import OrderTemplate from './code/alpha_template/OrderTemplate';
 import SCSimply, { SCSCodeLevel } from './code/type/SCSimply';
+import SCBinary from './code/type/SCBinary';
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
           }
           {
             new SCSimply(SCSCodeLevel.tecla_m).codificar(MutationTemplate.voisin(OrderTemplate.mixedReverse(format_str("Na verdade estou bem az"))))
+          }
+          {
+            new SCBinary().codificar(MutationTemplate.voisin(OrderTemplate.mixedReverse(format_str("Na verdade estou bem az"))))
           }
         </div>
       </header>

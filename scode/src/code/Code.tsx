@@ -21,11 +21,9 @@ export default abstract class Code implements ICode
         for(let i = 0; i < msg.length; i++)
         {
             if(i > 0) coded_msg += " / "
-            coded_msg += ( ponctuations.indexOf(msg[i]) != -1 ? (msg[i] == " " ? "***" : msg[i]) : this.symbols[alphabet.indexOf(msg[i])])
+            coded_msg += ( ponctuations.indexOf(msg[i]) != -1 ? (msg[i] == " " ? "00100000" : msg[i]) : this.symbols[alphabet.indexOf(msg[i])])
         }
 
-        let result: JSX.Element = this.formatOutput(coded_msg) 
-        console.log(this.symbols)
-        return result
+        return this.formatOutput(coded_msg) 
     }
 }
