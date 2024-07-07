@@ -1,2 +1,2 @@
 
-export const ponctuations: string[] = [".", ",", ";", ":", "?", "!", "(", ")", "[", "]", "{", "}", "<", ">", " "] 
+export const ponctuations: string[] = [] 

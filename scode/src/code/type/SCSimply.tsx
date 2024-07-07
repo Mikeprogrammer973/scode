@@ -44,6 +44,5 @@ export default class SCSimply extends Code
                     this.symbols.push(`${i + 1}`)
                 })
         }
-    console.log(this.symbols)
     }
 }

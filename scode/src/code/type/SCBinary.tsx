@@ -36,7 +36,7 @@ export default class SCBinary extends Code
             "01010111",
             "01011000",
             "01011001",
-            " 01011010"
+            "01011010"
         ]
     }
 }
