@@ -1,4 +1,4 @@
-import { alphabet } from "../../util/alphabet_reference"
+import Alphabet from "../../util/alphabet_reference"
 import Code from "../Code"
 
 export enum SCSCodeLevel {
@@ -40,7 +40,7 @@ export default class SCSimply extends Code
                 })
                 break
             case SCSCodeLevel.a_num:
-                alphabet.forEach((letter, i)=>{
+                new Alphabet().normal().get().forEach((letter, i)=>{
                     this.symbols.push(`${i + 1}`)
                 })
         }

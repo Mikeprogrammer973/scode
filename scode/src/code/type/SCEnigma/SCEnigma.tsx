@@ -1,7 +1,7 @@
-import { JSX } from "react";
 import SCECRotor from "./SCEComponent/SCECRotor";
 import SCECReflector from "./SCEComponent/SCECReflector";
 import SCECPlugboard from "./SCEComponent/SCECPlugboard";
+import Alphabet from "../../../util/alphabet_reference";
 
 class SCEnigma
 {
@@ -34,6 +34,9 @@ class SCEnigma
             input = this.rotors[i].backward(input)
         }
 
+        // Convert back to character
+        char = String.fromCharCode(input + 65)
+
         // Plugboard swap after going through the rotors
         char = this.plugboard.swap(char);
 
@@ -47,7 +50,7 @@ class SCEnigma
             }
         }
 
-        return String.fromCharCode(input + 65)
+        return char
     }
 
     encryptMessage(message: string): string {
@@ -55,16 +58,21 @@ class SCEnigma
     }
 }
 
-export default function codificar(msg: string): string {
-    /// PARA A PRODÇÃO: GERAR DE FORMA ALEATÓRIA (7 ROTORES)
-    const rotor1 = new SCECRotor("EKMFLGDQVZNTOWYHXUSPAIBRCJ", 16)
-    const rotor2 = new SCECRotor("AJDKSIRUXBLHWTMCQGZNPYFVOE", 4)
-    const rotor3 = new SCECRotor("BDFHJLCPRTXVZNYEIWGAKMUSQO", 21)
-    const reflectorB = new SCECReflector("YRUHQSLDPXNGOKMIEBFZCWVJAT")
-    ////
+export default function codificar(msg: string): SCEKey {
+    const rotors: SCECRotor[] = []
+    for(let i = 0; i < 10; i++) rotors.push(new SCECRotor(new Alphabet().shuffle().get().join(''), Math.round(Math.random() * 7000)))
+    const reflector = new SCECReflector("YRUHQSLDPXNGOKMIEBFZCWVJAT")
+    
     const plugboard = new SCECPlugboard([])
 
-    return new SCEnigma([rotor1, rotor2, rotor3], reflectorB, plugboard).encryptMessage(msg)
+    const encryptMessage = new SCEnigma(rotors, reflector, plugboard).encryptMessage(msg)
+
+    return {
+        rotors: rotors,
+        reflector: reflector,
+        plugboard: plugboard,
+        encryptMsg: encryptMessage
+    }
 }
 
 export type SCEKey = {
@@ -75,5 +83,6 @@ export type SCEKey = {
 }
 
 export function decodificar(key: SCEKey): string {
+    key.rotors.forEach(rotor => rotor.position = 0)
     return new SCEnigma(key.rotors, key.reflector, key.plugboard).encryptMessage(key.encryptMsg)
 }

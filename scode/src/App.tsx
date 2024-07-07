@@ -9,9 +9,14 @@ import SCSimply, { SCSCodeLevel } from './code/type/SCSimply';
 import SCBinary from './code/type/SCBinary';
 import SCNavajo from './code/type/SCNavajo';
 import codificar, { decodificar } from './code/type/SCEnigma/SCEnigma';
+import Alphabet from './util/alphabet_reference';
 
 function App() {
-  const msg = "odi at amo excrucior!"
+
+  const order = OrderTemplate.random(format_str("Deus"))
+  const msg = MutationTemplate.voisin(order)
+  const enigmaKey = codificar(msg)
+
   return (
     <div className="App">
       <header className="App-header">
@@ -19,39 +24,43 @@ function App() {
         <h1>SCode</h1>
         <div className='text-left text-2xl p-7'>
           {
-            format_str(msg)
+            format_str("Deus")
           }
           <br />
           {
-            MutationTemplate.voisin(OrderTemplate.mixedReverse(format_str(msg)))
+            MutationTemplate.voisin(order)
           }
           <br />
           {
-            new SCMorse().codificar(MutationTemplate.voisin(OrderTemplate.mixedReverse(format_str(msg))))
+            new SCMorse().codificar(msg)
           }
           <br />
           {
-            new SCSimply(SCSCodeLevel.a_num).codificar(MutationTemplate.voisin(OrderTemplate.mixedReverse(format_str(msg))))
+            new SCSimply(SCSCodeLevel.a_num).codificar(msg)
           }
           <br />
           {
-            new SCSimply(SCSCodeLevel.tecla).codificar(MutationTemplate.voisin(OrderTemplate.mixedReverse(format_str(msg))))
+            new SCSimply(SCSCodeLevel.tecla).codificar(msg)
           }
           <br />
           {
-            new SCSimply(SCSCodeLevel.tecla_m).codificar(MutationTemplate.voisin(OrderTemplate.mixedReverse(format_str(msg))))
+            new SCSimply(SCSCodeLevel.tecla_m).codificar(msg)
           }
           <br />
           {
-            new SCBinary().codificar(MutationTemplate.voisin(OrderTemplate.mixedReverse(format_str(msg))))
+            new SCBinary().codificar(msg)
           }
           <br />
           {
-            new SCNavajo().codificar(MutationTemplate.voisin(OrderTemplate.mixedReverse(format_str(msg))))
+            new SCNavajo().codificar(msg)
           }
           <br />
           {
-            codificar(MutationTemplate.voisin(OrderTemplate.mixedReverse(format_str(msg))))
+            enigmaKey.encryptMsg
+          }
+          <br />
+          {
+            decodificar(enigmaKey)
           }
         </div>
       </header>

@@ -1,42 +1,30 @@
+import Alphabet from "../../util/alphabet_reference"
 
 export default class OrderTemplate
 {
     static reverse(msg: string): string
     {
-        let msg_slices = msg.split(" ")
         let formated_msg = ""
 
-        if(msg_slices.length > 1)
+        for(let i = msg.length-1; i > -1; i--)
         {
-            msg_slices.forEach((slice, i)=>{
-                formated_msg += msg_slices[(msg_slices.length - i) - 1]
-                if(i < (msg_slices.length - 1)) formated_msg += " "
-            })
-        }else {
-            formated_msg = msg
+            formated_msg += msg[i]
         }
 
         return formated_msg
     }
 
-    static mixed(msg: string): string
+    static random(msg: string): string
     {
-        let msg_slices = msg.split(" ")
         let formated_msg = ""
+        const alpha_s = new Alphabet().shuffle().get()
+        const alpha_n = new Alphabet().normal().get()
 
-        msg_slices.forEach((slice, i)=>{
-            for(let i = slice.length-1; i > -1; i--)
-            {
-                formated_msg += slice[i]
-            }
-            if(i < (msg_slices.length - 1)) formated_msg += " "
-        })
-
+        for(let i = 0; i < msg.length; i++)
+        {
+            formated_msg += alpha_s[alpha_n.indexOf(msg[i])]
+        }
+        
         return formated_msg
-    }
-
-    static mixedReverse(msg: string): string
-    {
-        return this.mixed(this.reverse(msg))
     }
 }
