@@ -15,7 +15,7 @@ export default abstract class Code implements ICode
 
         for(let i = 0; i < msg.length; i++)
         {
-            if(i > 0) coded_msg += "   "
+            if(i > 0) coded_msg += " "
             coded_msg += ( ponctuations.indexOf(msg[i]) != -1 ? msg[i] : this.symbols[alphabet.indexOf(msg[i])])
         }
 
