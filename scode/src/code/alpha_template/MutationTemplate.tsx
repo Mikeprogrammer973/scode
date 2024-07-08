@@ -17,7 +17,7 @@ export default class MutationTemplate
 
     static decalage(msg: string, revert?: boolean, dec?: number): {msg: string, decalage: number}
     {
-        const decalage = Math.round(Math.random() * 24)
+        const decalage = Math.round(Math.random() * 23) + 1
         let formated_msg: string = ""
 
         for(let i = 0; i < msg.length; i++)
