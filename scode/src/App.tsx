@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { logo } from './util/logo';
 import SCFrama from './code/type/SCFrama';
 import MutationTemplate from './code/alpha_template/MutationTemplate';
@@ -9,13 +9,15 @@ import SCSimply, { SCSCodeLevel } from './code/type/SCSimply';
 import SCBinary from './code/type/SCBinary';
 import SCNavajo from './code/type/SCNavajo';
 import codificar, { decodificar } from './code/type/SCEnigma/SCEnigma';
+import SCVigenere from './code/type/SCVigenere';
 
 function App() {
 
-  const order_rand = OrderTemplate.random(format_str("Deus"))
-  const order_r = OrderTemplate.reverse(format_str("Deus"))
-  const mutation_r = MutationTemplate.reciproque(format_str("Deus"))
-  const mutation_d = MutationTemplate.decalage(format_str("Deus"))
+  const txt = "I am the one who does not"
+  const order_rand = OrderTemplate.random(format_str(txt))
+  const order_r = OrderTemplate.reverse(format_str(txt))
+  const mutation_r = MutationTemplate.reciproque(format_str(txt))
+  const mutation_d = MutationTemplate.decalage(format_str(txt))
   const msg = OrderTemplate.random(mutation_d.msg)
   //MutationTemplate.decalage(order_rand.msg)
   const enigmaKey = codificar(msg.msg)
@@ -27,7 +29,7 @@ function App() {
         <h1>SCode</h1>
         <div className='text-left text-2xl p-7'>
           {
-            format_str("Deus")
+            format_str(txt)
           }
           <br />
           ida msg:
@@ -134,6 +136,14 @@ function App() {
           <br />
           {
             decodificar(enigmaKey)
+          }
+          <br />
+          {
+            new SCVigenere(format_str("key"), msg.msg).codificar()
+          }
+          <br />
+          {
+            new SCVigenere(format_str("key"), new SCVigenere(format_str("key"), msg.msg).codificar()).decodificar()
           }
         </div>
       </header>
