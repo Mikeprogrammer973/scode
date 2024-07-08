@@ -3,32 +3,39 @@ import { ponctuations } from "../../util/ponctuation_ref"
 
 export default class MutationTemplate
 {
-    static normal(msg: string): string
-    {
-        return msg
-    }
-
     static reciproque(msg: string): string
     {
         let formated_msg: string = ""
 
         for(let i = 0; i < msg.length; i++)
         {
-            formated_msg += (ponctuations.indexOf(msg[i]) != -1 ? msg[i] : [(26-new Alphabet().normal().get().indexOf(msg[i]))-1])
+            formated_msg += (new Alphabet().normal().get()[(26-new Alphabet().normal().get().indexOf(msg[i]))-1])
         }
 
         return formated_msg
     }
 
-    static voisin(msg: string): string
+    static decalage(msg: string, revert?: boolean, dec?: number): {msg: string, decalage: number}
     {
+        const decalage = Math.round(Math.random() * 24)
         let formated_msg: string = ""
 
         for(let i = 0; i < msg.length; i++)
         {
-            formated_msg += (ponctuations.indexOf(msg[i]) != -1 ? msg[i]  : new Alphabet().normal().get()[(new Alphabet().normal().get().indexOf(msg[i]) == 25 ? 0 : (new Alphabet().normal().get().indexOf(msg[i]) + 1) )])
+            let pos = new Alphabet().normal().get().indexOf(msg[i])
+
+            if(revert)
+            {
+                pos -= dec || decalage
+                if(pos < 0) pos += 25
+            }else{
+                pos += decalage
+                if(pos > 25) pos -= 25
+            }
+
+            formated_msg += (new Alphabet().normal().get()[pos])
         }
 
-        return formated_msg
+        return {msg: formated_msg, decalage: decalage}
     }
 }

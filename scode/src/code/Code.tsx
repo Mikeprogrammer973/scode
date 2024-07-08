@@ -8,9 +8,9 @@ export default abstract class Code implements ICode
 
     /**
      * codificar
-        msg: string : string[]    
+        msg: string : string    
     */
-    public codificar(msg: string): string {
+    codificar(msg: string): string {
         let coded_msg = ""
 
         for(let i = 0; i < msg.length; i++)
@@ -20,5 +20,13 @@ export default abstract class Code implements ICode
         }
 
         return coded_msg
+    }
+
+    /**
+     * decodificar
+        msg: string : string    
+    */
+    decodificar(msg: string): string {
+        return msg.split(" ").map(symbol => new Alphabet().normal().get()[this.symbols.indexOf(symbol)]).join("")
     }
 }
