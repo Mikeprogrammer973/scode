@@ -10,6 +10,8 @@ import SCBinary from './code/type/SCBinary';
 import SCNavajo from './code/type/SCNavajo';
 import codificar, { decodificar } from './code/type/SCEnigma/SCEnigma';
 import SCVigenere from './code/type/SCVigenere';
+import SCBacon from './code/type/SCBacon';
+import polybeEncode, { polybeDecode } from './code/type/SCPolybe';
 
 function App() {
 
@@ -18,9 +20,10 @@ function App() {
   const order_r = OrderTemplate.reverse(format_str(txt))
   const mutation_r = MutationTemplate.reciproque(format_str(txt))
   const mutation_d = MutationTemplate.decalage(format_str(txt))
-  const msg = OrderTemplate.random(mutation_d.msg)
+  const msg = OrderTemplate.reverse(mutation_r)
   //MutationTemplate.decalage(order_rand.msg)
-  const enigmaKey = codificar(msg.msg)
+  const enigmaKey = codificar(msg)
+
 
   return (
     <div className="App">
@@ -34,12 +37,12 @@ function App() {
           <br />
           ida msg:
           {
-            msg.msg
+            msg
           }
           <br />
           volta msg:
           {
-            MutationTemplate.decalage(OrderTemplate.random(msg.msg, msg.alpha_ref, true).msg, true, mutation_d.decalage).msg
+            MutationTemplate.reciproque(OrderTemplate.reverse(msg))
           }
           <br />
           ida reciproque:
@@ -82,53 +85,63 @@ function App() {
             OrderTemplate.random(order_rand.msg, order_rand.alpha_ref, true).msg
           }
           <br />
+          morse:
+          <br />
           {
-            new SCMorse().codificar(msg.msg)
+            new SCMorse().codificar(msg)
           }
           <br />
           {
-            new SCMorse().decodificar(new SCMorse().codificar(msg.msg))
+            new SCMorse().decodificar(new SCMorse().codificar(msg))
+          }
+          <br />
+          simply:
+          <br />
+          {
+            new SCSimply(SCSCodeLevel.a_num).codificar(msg)
           }
           <br />
           {
-            new SCSimply(SCSCodeLevel.a_num).codificar(msg.msg)
+            new SCSimply(SCSCodeLevel.a_num).decodificar( new SCSimply(SCSCodeLevel.a_num).codificar(msg))
           }
           <br />
           {
-            new SCSimply(SCSCodeLevel.a_num).decodificar( new SCSimply(SCSCodeLevel.a_num).codificar(msg.msg))
+            new SCSimply(SCSCodeLevel.tecla).codificar(msg)
           }
           <br />
           {
-            new SCSimply(SCSCodeLevel.tecla).codificar(msg.msg)
+            new SCSimply(SCSCodeLevel.tecla).decodificar(new SCSimply(SCSCodeLevel.tecla).codificar(msg))
           }
           <br />
           {
-            new SCSimply(SCSCodeLevel.tecla).decodificar(new SCSimply(SCSCodeLevel.tecla).codificar(msg.msg))
+            new SCSimply(SCSCodeLevel.tecla_m).codificar(msg)
           }
           <br />
           {
-            new SCSimply(SCSCodeLevel.tecla_m).codificar(msg.msg)
+            new SCSimply(SCSCodeLevel.tecla_m).decodificar(new SCSimply(SCSCodeLevel.tecla_m).codificar(msg))
+          }
+          <br />
+          binary:
+          <br />
+          {
+            new SCBinary().codificar(msg)
           }
           <br />
           {
-            new SCSimply(SCSCodeLevel.tecla_m).decodificar(new SCSimply(SCSCodeLevel.tecla_m).codificar(msg.msg))
+            new SCBinary().decodificar(new SCBinary().codificar(msg))
+          }
+          <br />
+          navajo:
+          <br />
+          {
+            new SCNavajo().codificar(msg)
           }
           <br />
           {
-            new SCBinary().codificar(msg.msg)
+            new SCNavajo().decodificar(new SCNavajo().codificar(msg))
           }
           <br />
-          {
-            new SCBinary().decodificar(new SCBinary().codificar(msg.msg))
-          }
-          <br />
-          {
-            new SCNavajo().codificar(msg.msg)
-          }
-          <br />
-          {
-            new SCNavajo().decodificar(new SCNavajo().codificar(msg.msg))
-          }
+          enigma:
           <br />
           {
             enigmaKey.encryptMsg
@@ -138,12 +151,44 @@ function App() {
             decodificar(enigmaKey)
           }
           <br />
+          vigenere:
+          <br />
           {
-            new SCVigenere(format_str("key"), msg.msg).codificar()
+            new SCVigenere(format_str("key"), msg).codificar()
           }
           <br />
           {
-            new SCVigenere(format_str("key"), new SCVigenere(format_str("key"), msg.msg).codificar()).decodificar()
+            new SCVigenere(format_str("key"), new SCVigenere(format_str("key"), msg).codificar()).decodificar()
+          }
+          <br />
+          frama:
+          <br />
+          {
+            new SCFrama(format_str("Maria Santos")).codificar(msg)
+          }
+          <br />
+          {
+            new SCFrama(format_str("Maria Santos")).decodificar(new SCFrama(format_str("Maria Santos")).codificar(msg))
+          }
+          <br />
+          bacon:
+          <br />
+          {
+            new SCBacon().codificar(msg)
+          }
+          <br />
+          {
+            new SCBacon().decodificar(new SCBacon().codificar(msg))
+          }
+          <br />
+          polybe
+          <br />
+          {
+            polybeEncode(msg)
+          }
+          <br />
+          {
+            polybeDecode(polybeEncode(msg))
           }
         </div>
       </header>
