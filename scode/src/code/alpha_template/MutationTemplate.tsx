@@ -1,5 +1,4 @@
 import Alphabet from "../../util/alphabet_reference"
-import { ponctuations } from "../../util/ponctuation_ref"
 
 export default class MutationTemplate
 {

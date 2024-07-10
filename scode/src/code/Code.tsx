@@ -1,5 +1,4 @@
 import Alphabet from "../util/alphabet_reference";
-import { ponctuations } from "../util/ponctuation_ref";
 import ICode from "./ICode";
 
 export default abstract class Code implements ICode
@@ -16,7 +15,7 @@ export default abstract class Code implements ICode
         for(let i = 0; i < msg.length; i++)
         {
             if(i > 0) coded_msg += " "
-            coded_msg += ( ponctuations.indexOf(msg[i]) != -1 ? msg[i] : this.symbols[new Alphabet().normal().get().indexOf(msg[i])])
+            coded_msg +=  this.symbols[new Alphabet().normal().get().indexOf(msg[i])]
         }
 
         return coded_msg
