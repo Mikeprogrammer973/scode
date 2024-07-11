@@ -92,7 +92,7 @@ export default function Encrypt(): JSX.Element
                 <div className="aspect-[1/1] h-full bg-black">
                     <div  className="bg-white rounded-tl-lg rounded-tr-lg lg:rounded-tr-none lg:rounded-bl-lg h-full w-full p-5">
                         <div className="bg-blue-100 border-t-4 border-blue-500 text-blue-900 px-4 py-3 shadow-md">Type your text here</div>
-                        <textarea onChange={e => {setTxt(e.target.value); previweFormatation();}} value={format_str(txt)} className="bg-slate-500 text-gray-300 text-xl w-full h-full p-5 outline-none"></textarea>
+                        <textarea rows={10} onChange={e => {setTxt(e.target.value); previweFormatation();}} value={format_str(txt)} className="bg-slate-500 text-gray-300 text-xl w-full p-5 outline-none"></textarea>
                     </div>
                 </div>
                 <div className="aspect-[1/1] h-full bg-orange-600">
@@ -113,9 +113,7 @@ export default function Encrypt(): JSX.Element
                                     </select>
                                 </abbr>
                             </p>
-                            <p className="p-2 text-xl text-white">
-                                {fTxt}
-                            </p>
+                            <textarea rows={7} value={fTxt} className="div-2 text-xl text-white w-full bg-transparent px-2 outline-none box-border"></textarea>
                         </div>
                         <div className="bg-blue-700 pb-5">
                         <p className="p-2">

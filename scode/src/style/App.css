@@ -19,6 +19,10 @@
   top: 0px;
 }
 
+.m-2 {
+  margin: 0.5rem;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -27,6 +31,11 @@
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .mt-0 {
@@ -39,6 +48,10 @@
 
 .mb-3 {
   margin-bottom: 0.75rem;
+}
+
+.box-border {
+  box-sizing: border-box;
 }
 
 .block {
@@ -89,6 +102,10 @@
   max-width: 1280px;
 }
 
+.max-w-\[50\%\] {
+  max-width: 50%;
+}
+
 .cursor-default {
   cursor: default;
 }
@@ -123,6 +140,10 @@
 
 .overflow-y-scroll {
   overflow-y: scroll;
+}
+
+.text-wrap {
+  text-wrap: wrap;
 }
 
 .rounded-md {
@@ -218,6 +239,10 @@
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-transparent {
+  background-color: transparent;
+}
+
 .p-1 {
   padding: 0.25rem;
 }
@@ -260,6 +285,11 @@
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .pb-5 {
