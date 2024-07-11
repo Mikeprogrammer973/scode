@@ -91,13 +91,14 @@ export default function Encrypt(): JSX.Element
             <div className="grid grid-cols-1 lg:grid-cols-2 p-5">
                 <div className="aspect-[1/1] h-full bg-black">
                     <div  className="bg-white rounded-tl-lg rounded-tr-lg lg:rounded-tr-none lg:rounded-bl-lg h-full w-full p-5">
+                        <div className="bg-blue-100 border-t-4 border-blue-500 text-blue-900 px-4 py-3 shadow-md">Type your text here</div>
                         <textarea onChange={e => {setTxt(e.target.value); previweFormatation();}} value={format_str(txt)} className="bg-slate-500 text-gray-300 text-xl w-full h-full p-5 outline-none"></textarea>
                     </div>
                 </div>
                 <div className="aspect-[1/1] h-full bg-orange-600">
                     <div className="bg-white rounded-bl-lg rounded-br-lg lg:rounded-bl-none lg:rounded-tr-lg h-full w-full p-5 overflow-y-scroll">
                         <div className="bg-blue-500 pb-5">
-                            <div className="bg-orange-100 border-t-4 border-orange-500 text-orange-900 px-4 py-3 shadow-md">To update the preview, focus in the text area and click the 'Enter' key twice</div>
+                            <div className="bg-green-100 border-t-4 border-green-500 text-green-900 px-4 py-3 mb-3 shadow-md">To update the preview, focus in the text area and click the 'Enter' key twice</div>
                             <p className="p-2 flex gap-3 align-middle">
                                 <abbr className="w-[50%]" title="Mutation">
                                     <select onChange={e => {setTxtMut(e.target.selectedIndex); previweFormatation();}} className="w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6">
