@@ -89,13 +89,16 @@ export default function Encrypt(): JSX.Element
         <section className="bg-slate-800">
             <div>ALERTA</div>
             <div className="grid grid-cols-1 lg:grid-cols-2 p-5">
-                <div className="aspect-[1/1] h-full bg-black">
+                <div className="h-full bg-black">
                     <div  className="bg-white rounded-tl-lg rounded-tr-lg lg:rounded-tr-none lg:rounded-bl-lg h-full w-full p-5">
                         <div className="bg-blue-100 border-t-4 border-blue-500 text-blue-900 px-4 py-3 shadow-md">Type your text here</div>
                         <textarea rows={10} onChange={e => {setTxt(e.target.value); previweFormatation();}} value={format_str(txt)} className="bg-slate-500 text-gray-300 text-xl w-full p-5 outline-none"></textarea>
+                        <button className="flex w-full justify-center rounded-md bg-gray-800 px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm text-white hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">
+                            Crypt message
+                        </button>
                     </div>
                 </div>
-                <div className="aspect-[1/1] h-full bg-orange-600">
+                <div className="h-full bg-orange-600">
                     <div className="bg-white rounded-bl-lg rounded-br-lg lg:rounded-bl-none lg:rounded-tr-lg h-full w-full p-5 overflow-y-scroll">
                         <div className="bg-blue-500 pb-5">
                             <div className="bg-green-100 border-t-4 border-green-500 text-green-900 px-4 py-3 mb-3 shadow-md">To update the preview, focus in the text area and click the 'Enter' key twice</div>
@@ -113,7 +116,7 @@ export default function Encrypt(): JSX.Element
                                     </select>
                                 </abbr>
                             </p>
-                            <textarea rows={7} value={fTxt} className="div-2 text-xl text-white w-full bg-transparent px-2 outline-none box-border"></textarea>
+                            <textarea readOnly rows={7} value={fTxt} className="div-2 text-xl text-white w-full bg-transparent px-2 outline-none box-border"></textarea>
                         </div>
                         <div className="bg-blue-700 pb-5">
                         <p className="p-2">
@@ -136,7 +139,7 @@ export default function Encrypt(): JSX.Element
                                     <input type="text" onChange={e => {setKey(e.target.value); previweFormatation();}} value={format_str(key)} placeholder="Key" className="w-full my-2 rounded-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6" />
                                 </abbr>}
                             </p>
-                            <textarea rows={7} value={cTxt} className="div-2 text-xl text-white w-full bg-transparent px-2 outline-none box-border"></textarea>
+                            <textarea readOnly rows={7} value={cTxt} className="div-2 text-xl text-white w-full bg-transparent px-2 outline-none box-border"></textarea>
                         </div>
                     </div>
                 </div>
