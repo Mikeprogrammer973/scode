@@ -136,9 +136,7 @@ export default function Encrypt(): JSX.Element
                                     <input type="text" onChange={e => {setKey(e.target.value); previweFormatation();}} value={format_str(key)} placeholder="Key" className="w-full my-2 rounded-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6" />
                                 </abbr>}
                             </p>
-                            <p className="p-2 text-xl text-white">
-                                {cTxt}
-                            </p>
+                            <textarea rows={7} value={cTxt} className="div-2 text-xl text-white w-full bg-transparent px-2 outline-none box-border"></textarea>
                         </div>
                     </div>
                 </div>
