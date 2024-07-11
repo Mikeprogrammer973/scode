@@ -2,6 +2,15 @@ import { useState } from "react"
 import format_str from "../util/format_str"
 import MutationTemplate from "../code/alpha_template/MutationTemplate"
 import OrderTemplate from "../code/alpha_template/OrderTemplate"
+import SCSimply, { SCSCodeLevel } from "../code/type/SCSimply"
+import SCMorse from "../code/type/SCMorse"
+import SCBinary from "../code/type/SCBinary"
+import SCNavajo from "../code/type/SCNavajo"
+import codificar, { SCEKey } from "../code/type/SCEnigma/SCEnigma"
+import SCVigenere from "../code/type/SCVigenere"
+import SCFrama from "../code/type/SCFrama"
+import SCBacon from "../code/type/SCBacon"
+import polybeEncode from "../code/type/SCPolybe"
 
 export default function Encrypt(): JSX.Element
 {
@@ -12,45 +21,92 @@ export default function Encrypt(): JSX.Element
     const [key, setKey] = useState<string>("")
     const [txt, setTxt] = useState<string>("")
     const [fTxt, setFTxt] = useState<string>("")
+    const [cTxt, setCTxt] = useState<string>("")
     const [[prmsD, setPrmsD], [prmsR, setPrmsR]] = [useState<{msg: string, decalage: number}>(), useState<{alpha_ref: string[], msg: string}>()]
 
-    /*if(txtMut == 0 && txtOrder == 0){
-        setPrmsD(MutationTemplate.decalage(OrderTemplate.reverse(txt)))
-        setFTxt(prmsD?.msg || "")
+    function previweFormatation()
+    {
+        if(txtMut == 0 && txtOrder == 0){
+            setPrmsD(MutationTemplate.decalage(OrderTemplate.reverse(format_str(txt))))
+            setFTxt(prmsD?.msg || "")
+        }
+        if(txtMut == 0 && txtOrder == 1){
+            setPrmsR(OrderTemplate.random(format_str(txt)))
+            setPrmsD(MutationTemplate.decalage(prmsR?.msg || ""))
+            setFTxt(prmsD?.msg || "")
+        }
+        if(txtMut == 1 && txtOrder == 0) setFTxt(MutationTemplate.reciproque(OrderTemplate.reverse(format_str(txt))))
+        if(txtMut == 1 && txtOrder == 1){
+            setPrmsR(OrderTemplate.random(format_str(txt)))
+            setFTxt(MutationTemplate.reciproque(prmsR?.msg || ""))
+        }
+
+        let coded_txt: string | SCEKey = ""
+
+        switch(cypherType)
+        {
+            case 0:
+                coded_txt = new SCSimply(SCSCodeLevel.tecla).codificar(fTxt)
+                break
+            case 1:
+                coded_txt = new SCSimply(SCSCodeLevel.tecla_m).codificar(fTxt)
+                break
+            case 2:
+                coded_txt = new SCSimply(SCSCodeLevel.a_num).codificar(fTxt)
+                break
+            case 3:
+                coded_txt = new SCMorse().codificar(fTxt)
+                break
+            case 4:
+                coded_txt = new SCBinary().codificar(fTxt)
+                break
+            case 5:
+                coded_txt = new SCNavajo().codificar(fTxt)
+                break
+            case 6: 
+                coded_txt = codificar(fTxt)
+                break
+            case 7:
+                if(key == "") setKey(format_str("my key"))
+                coded_txt = new SCVigenere(key, fTxt).codificar()
+                break
+            case 8:
+                if(key == "") setKey(format_str("my key"))
+                coded_txt = new SCFrama(key).codificar(fTxt)
+                break
+            case 9:
+                coded_txt = new SCBacon().codificar(fTxt)
+                break
+            case 10:
+                coded_txt = polybeEncode(fTxt)
+        }
+        
+        setCTxt((typeof(coded_txt) == "string" ? coded_txt : coded_txt.encryptMsg))
     }
-    if(txtMut == 0 && txtOrder == 1){
-        setPrmsR(OrderTemplate.random(txt))
-        setPrmsD(MutationTemplate.decalage(prmsR?.msg || ""))
-        setFTxt(prmsD?.msg || "")
-    }
-    if(txtMut == 1 && txtOrder == 0) setFTxt(MutationTemplate.reciproque(OrderTemplate.reverse(txt)))
-    if(txtMut == 1 && txtOrder == 1){
-        setPrmsR(OrderTemplate.random(txt))
-        setFTxt(MutationTemplate.reciproque(prmsR?.msg || ""))
-    }*/
 
 
     return(
         <section className="bg-slate-800">
             <div>ALERTA</div>
             <div className="grid grid-cols-1 lg:grid-cols-2 p-5">
-                <div className="aspect-[16/9] h-full bg-black">
+                <div className="aspect-[1/1] h-full bg-black">
                     <div  className="bg-white rounded-tl-lg rounded-tr-lg lg:rounded-tr-none lg:rounded-bl-lg h-full w-full p-5">
-                        <textarea onChange={e => setTxt(e.target.value)} value={format_str(txt)} className="bg-slate-500 text-gray-300 text-xl w-full h-full p-5 outline-none"></textarea>
+                        <textarea onChange={e => {setTxt(e.target.value); previweFormatation();}} value={format_str(txt)} className="bg-slate-500 text-gray-300 text-xl w-full h-full p-5 outline-none"></textarea>
                     </div>
                 </div>
-                <div className="aspect-[16/9] h-full bg-orange-600">
-                    <div className="bg-white rounded-bl-lg rounded-br-lg lg:rounded-bl-none lg:rounded-tr-lg h-full w-full p-5">
-                        <div className="bg-blue-500">
+                <div className="aspect-[1/1] h-full bg-orange-600">
+                    <div className="bg-white rounded-bl-lg rounded-br-lg lg:rounded-bl-none lg:rounded-tr-lg h-full w-full p-5 overflow-y-scroll">
+                        <div className="bg-blue-500 pb-5">
+                            <div className="bg-orange-100 border-t-4 border-orange-500 text-orange-900 px-4 py-3 shadow-md">To update the preview, focus in the text area and click the 'Enter' key twice</div>
                             <p className="p-2 flex gap-3 align-middle">
                                 <abbr className="w-[50%]" title="Mutation">
-                                    <select onChange={e => setTxtMut(e.target.selectedIndex)} className="w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6">
+                                    <select onChange={e => {setTxtMut(e.target.selectedIndex); previweFormatation();}} className="w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6">
                                         <option value="gap">Gap</option>
                                         <option value="reciprocal">Reciprocal</option>
                                     </select>
                                 </abbr>
                                 <abbr className="w-[50%]" title="Order">
-                                    <select onChange={e => setTxtOrder(e.target.selectedIndex)}  className="w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6">
+                                    <select onChange={e => {setTxtOrder(e.target.selectedIndex); previweFormatation();}}  className="w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6">
                                         <option value="reverse">Reverse</option>
                                         <option value="random">Random</option>
                                     </select>
@@ -60,10 +116,10 @@ export default function Encrypt(): JSX.Element
                                 {fTxt}
                             </p>
                         </div>
-                        <div className="bg-blue-700">
+                        <div className="bg-blue-700 pb-5">
                         <p className="p-2">
                                 <abbr title="Cypher type">
-                                    <select onChange={e => setCypherType(e.target.selectedIndex)}  className="w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6">
+                                    <select onChange={e => {setCypherType(e.target.selectedIndex); previweFormatation();}}  className="w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6">
                                         <option value="simply_t">SCSimply TK</option>
                                         <option value="simply_tm">SCSimply TM</option>
                                         <option value="simply_n">SCSimply Num</option>
@@ -78,11 +134,11 @@ export default function Encrypt(): JSX.Element
                                     </select>
                                 </abbr>
                                 {(cypherType == 7 || cypherType == 8) && <abbr title="Key">
-                                    <input type="text" onChange={e => setKey(e.target.value)} value={format_str(key)} placeholder="Key" className="w-full my-2 rounded-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6" />
+                                    <input type="text" onChange={e => {setKey(e.target.value); previweFormatation();}} value={format_str(key)} placeholder="Key" className="w-full my-2 rounded-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6" />
                                 </abbr>}
                             </p>
                             <p className="p-2 text-xl text-white">
-                                CODED TEXT
+                                {cTxt}
                             </p>
                         </div>
                     </div>
