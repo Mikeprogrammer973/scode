@@ -11,10 +11,15 @@ import SCVigenere from "../code/type/SCVigenere"
 import SCFrama from "../code/type/SCFrama"
 import SCBacon from "../code/type/SCBacon"
 import polybeEncode from "../code/type/SCPolybe"
+import Spinner from "../util/spinner"
+import MsgBox from "../util/msgBox"
+import { Alert } from "../util/alert"
 
 export default function Encrypt(): JSX.Element
 {
-
+    const [spinnerV, setSpinnerV] = useState<boolean>(false)
+    const [msgBV, setMsgBV] = useState<boolean>(false)
+    const [alert, setAlert] = useState<JSX.Element>(<div></div>)
     const [cypherType, setCypherType] = useState<number>(0)
     const [txtMut, setTxtMut] = useState<number>(0)
     const [txtOrder, setTxtOrder] = useState<number>(0)
@@ -84,16 +89,27 @@ export default function Encrypt(): JSX.Element
         setCTxt((typeof(coded_txt) == "string" ? coded_txt : coded_txt.encryptMsg))
     }
 
+    function generateCrypt()
+    {
+        setSpinnerV(true)
+        setTimeout(()=>{
+            setSpinnerV(false)
+            setAlert(<Alert color="info" title="SCode Encrypt" msg={<div>Message crypted successfully! <br />Click <a href="#" className="underline font-semibold">here</a> to download the decrypt doc.</div>} />)
+            setMsgBV(true)
+        }, 5000)
+    }
+
 
     return(
         <section className="bg-slate-800">
-            <div>ALERTA</div>
+            <Spinner visible={spinnerV} />
+            <MsgBox visible={msgBV} msg={alert} setVisible={setMsgBV} />
             <div className="grid grid-cols-1 lg:grid-cols-2 p-5">
                 <div className="h-full bg-black">
                     <div  className="bg-white rounded-tl-lg rounded-tr-lg lg:rounded-tr-none lg:rounded-bl-lg h-full w-full p-5">
                         <div className="bg-blue-100 border-t-4 border-blue-500 text-blue-900 px-4 py-3 shadow-md">Type your text here</div>
                         <textarea rows={10} onChange={e => {setTxt(e.target.value); previweFormatation();}} value={format_str(txt)} className="bg-slate-500 text-gray-300 text-xl w-full p-5 outline-none"></textarea>
-                        <button className="flex w-full justify-center rounded-md bg-gray-800 px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm text-white hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">
+                        <button onClick={()=> generateCrypt()} className="flex w-full justify-center rounded-md bg-gray-800 px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm text-white hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">
                             Crypt message
                         </button>
                     </div>
