@@ -101,32 +101,32 @@ export default function Encrypt(): JSX.Element
 
 
     return(
-        <section className="bg-slate-800">
+        <section className="bg-slate-800 p-5">
             <Spinner visible={spinnerV} />
             <MsgBox visible={msgBV} msg={alert} setVisible={setMsgBV} />
-            <div className="grid grid-cols-1 lg:grid-cols-2 p-5">
-                <div className="h-full bg-black">
-                    <div  className="bg-white rounded-tl-lg rounded-tr-lg lg:rounded-tr-none lg:rounded-bl-lg h-full w-full p-5">
+            <div className="bg-slate-600 rounded-lg grid grid-cols-1 lg:grid-cols-2 p-5">
+                <div className="h-full">
+                    <div  className="h-full w-full p-5">
                         <div className="bg-blue-100 border-t-4 border-blue-500 text-blue-900 px-4 py-3 shadow-md">Type your text here</div>
-                        <textarea rows={10} onChange={e => {setTxt(e.target.value); previweFormatation();}} value={format_str(txt)} className="bg-slate-500 text-gray-300 text-xl w-full p-5 outline-none"></textarea>
+                        <textarea rows={10} onChange={e => {setTxt(e.target.value); previweFormatation();}} value={format_str(txt)} className="bg-slate-900 text-gray-300 text-xl w-full p-5 outline-none"></textarea>
                         <button onClick={()=> generateCrypt()} className="flex w-full justify-center rounded-md bg-gray-800 px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm text-white hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">
                             Crypt message
                         </button>
                     </div>
                 </div>
-                <div className="h-full bg-orange-600">
-                    <div className="bg-white rounded-bl-lg rounded-br-lg lg:rounded-bl-none lg:rounded-tr-lg h-full w-full p-5 overflow-y-scroll">
-                        <div className="bg-blue-500 pb-5">
+                <div className="h-full">
+                    <div className="h-full w-full p-5 overflow-y-scroll">
+                        <div className="pb-5 border-gray-500 border-2">
                             <div className="bg-green-100 border-t-4 border-green-500 text-green-900 px-4 py-3 mb-3 shadow-md">To update the preview, focus in the text area and click <button onClick={()=> previweFormatation()} className="rounded-md bg-green-800 px-3 py-1 text-sm font-semibold leading-6 shadow-sm text-white hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">here</button></div>
                             <p className="p-2 flex gap-3 align-middle">
                                 <abbr className="w-[50%]" title="Mutation">
-                                    <select onChange={e => {setTxtMut(e.target.selectedIndex); previweFormatation();}} className="w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6">
+                                    <select onChange={e => {setTxtMut(e.target.selectedIndex); previweFormatation();}} className="w-full bg-transparent rounded-md border-0 p-1.5 text-gray-400 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6">
                                         <option value="gap">Gap</option>
                                         <option value="reciprocal">Reciprocal</option>
                                     </select>
                                 </abbr>
                                 <abbr className="w-[50%]" title="Order">
-                                    <select onChange={e => {setTxtOrder(e.target.selectedIndex); previweFormatation();}}  className="w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6">
+                                    <select onChange={e => {setTxtOrder(e.target.selectedIndex); previweFormatation();}}  className="w-full bg-transparent rounded-md border-0 p-1.5 text-gray-400 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6">
                                         <option value="reverse">Reverse</option>
                                         <option value="random">Random</option>
                                     </select>
@@ -134,10 +134,10 @@ export default function Encrypt(): JSX.Element
                             </p>
                             <textarea readOnly rows={7} value={fTxt} className="div-2 text-xl text-white w-full bg-transparent px-2 outline-none box-border"></textarea>
                         </div>
-                        <div className="bg-blue-700 pb-5">
+                        <div className="pb-5 border-gray-500 border-2">
                         <p className="p-2">
                                 <abbr title="Cypher type">
-                                    <select onChange={e => {setCypherType(e.target.selectedIndex); previweFormatation();}}  className="w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6">
+                                    <select onChange={e => {setCypherType(e.target.selectedIndex); previweFormatation();}}  className="w-full bg-inherit rounded-md border-0 p-1.5 text-gray-400 shadow-sm outline-white ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6">
                                         <option value="simply_t">SCSimply TK</option>
                                         <option value="simply_tm">SCSimply TM</option>
                                         <option value="simply_n">SCSimply Num</option>
@@ -152,7 +152,7 @@ export default function Encrypt(): JSX.Element
                                     </select>
                                 </abbr>
                                 {(cypherType == 7 || cypherType == 8) && <abbr title="Key">
-                                    <input type="text" onChange={e => {setKey(e.target.value); previweFormatation();}} value={format_str(key)} placeholder="Key" className="w-full my-2 rounded-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6" />
+                                    <input type="text" onChange={e => {setKey(e.target.value); previweFormatation();}} value={format_str(key)} placeholder="Key" className="w-full my-2 rounded-md border-0 p-1.5 text-gray-200 bg-inherit shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6" />
                                 </abbr>}
                             </p>
                             <textarea readOnly rows={7} value={cTxt} className="div-2 text-xl text-white w-full bg-transparent px-2 outline-none box-border"></textarea>
