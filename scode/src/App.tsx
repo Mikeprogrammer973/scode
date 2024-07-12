@@ -142,7 +142,7 @@ function App() {
       </footer>
 
       
-      <div className='text-left text-2xl p-7'>
+      {false && <div className='text-left text-2xl p-7'>
           {
             format_str(txt)
           }
@@ -302,7 +302,7 @@ function App() {
           {
             polybeDecode(polybeEncode(msg))
           }
-      </div>
+      </div>}
 
     </div>
   );
