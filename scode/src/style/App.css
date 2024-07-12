@@ -227,6 +227,11 @@
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-green-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 101 52 / var(--tw-bg-opacity));
+}
+
 .p-1 {
   padding: 0.25rem;
 }
@@ -975,6 +980,11 @@ video {
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-green-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(21 128 61 / var(--tw-bg-opacity));
+}
+
 .hover\:text-gray-100:hover {
   --tw-text-opacity: 1;
   color: rgb(243 244 246 / var(--tw-text-opacity));
@@ -998,6 +1008,10 @@ video {
 
 .focus-visible\:outline-gray-600:focus-visible {
   outline-color: #4b5563;
+}
+
+.focus-visible\:outline-green-600:focus-visible {
+  outline-color: #16a34a;
 }
 
 @media (min-width: 640px) {

@@ -101,7 +101,7 @@ export default function Encrypt(): JSX.Element
                 <div className="h-full bg-orange-600">
                     <div className="bg-white rounded-bl-lg rounded-br-lg lg:rounded-bl-none lg:rounded-tr-lg h-full w-full p-5 overflow-y-scroll">
                         <div className="bg-blue-500 pb-5">
-                            <div className="bg-green-100 border-t-4 border-green-500 text-green-900 px-4 py-3 mb-3 shadow-md">To update the preview, focus in the text area and click the 'Enter' key twice</div>
+                            <div className="bg-green-100 border-t-4 border-green-500 text-green-900 px-4 py-3 mb-3 shadow-md">To update the preview, focus in the text area and click <button onClick={()=> previweFormatation()} className="rounded-md bg-green-800 px-3 py-1 text-sm font-semibold leading-6 shadow-sm text-white hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">here</button></div>
                             <p className="p-2 flex gap-3 align-middle">
                                 <abbr className="w-[50%]" title="Mutation">
                                     <select onChange={e => {setTxtMut(e.target.selectedIndex); previweFormatation();}} className="w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6">
