@@ -27,6 +27,7 @@ function App() {
   const msg = OrderTemplate.reverse(mutation_r)
   //MutationTemplate.decalage(order_rand.msg)
   const enigmaKey = codificar(msg)
+  const polybe = polybeEncode(msg)
 
 
   return (
@@ -142,7 +143,7 @@ function App() {
       </footer>
 
       
-      {false && <div className='text-left text-2xl p-7'>
+      {true && <div className='text-left text-2xl p-7'>
           {
             format_str(txt)
           }
@@ -296,11 +297,11 @@ function App() {
           polybe
           <br />
           {
-            polybeEncode(msg)
+            polybe.msg
           }
           <br />
           {
-            polybeDecode(polybeEncode(msg))
+            polybeDecode(polybe.msg, polybe.grid_ref)
           }
       </div>}
 

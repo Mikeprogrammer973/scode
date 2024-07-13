@@ -23,7 +23,7 @@ export default function Encrypt(): JSX.Element
     const [cypherType, setCypherType] = useState<number>(0)
     const [txtMut, setTxtMut] = useState<number>(0)
     const [txtOrder, setTxtOrder] = useState<number>(0)
-    const [key, setKey] = useState<string>("")
+    const [key, setKey] = useState<string>("key")
     const [txt, setTxt] = useState<string>("")
     const [fTxt, setFTxt] = useState<string>("")
     const [cTxt, setCTxt] = useState<string>("")
@@ -46,7 +46,8 @@ export default function Encrypt(): JSX.Element
             setFTxt(MutationTemplate.reciproque(prmsR?.msg || ""))
         }
 
-        let coded_txt: string | SCEKey = ""
+        let coded_txt: string | SCEKey  = ""
+        let polybe: {msg: string, grid_ref: string} 
 
         switch(cypherType)
         {
@@ -72,18 +73,19 @@ export default function Encrypt(): JSX.Element
                 coded_txt = codificar(fTxt)
                 break
             case 7:
-                if(key == "") setKey(format_str("my key"))
+                if(key == "") setKey(format_str("key"))
                 coded_txt = new SCVigenere(key, fTxt).codificar()
                 break
             case 8:
-                if(key == "") setKey(format_str("my key"))
+                if(key == "") setKey(format_str("key"))
                 coded_txt = new SCFrama(key).codificar(fTxt)
                 break
             case 9:
                 coded_txt = new SCBacon().codificar(fTxt)
                 break
             case 10:
-                coded_txt = polybeEncode(fTxt)
+                polybe = polybeEncode(fTxt)
+                coded_txt = polybe.msg
         }
         
         setCTxt((typeof(coded_txt) == "string" ? coded_txt : coded_txt.encryptMsg))
