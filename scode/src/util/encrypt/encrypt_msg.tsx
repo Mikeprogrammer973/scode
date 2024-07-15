@@ -11,8 +11,17 @@ import SCSimply, { SCSCodeLevel } from "../../code/type/SCSimply"
 import SCVigenere from "../../code/type/SCVigenere"
 import Alphabet from "../refs/alphabet_reference"
 
-export default function encrypt_msg(pattern: string, msg: string): {crypted_msg: string, decrypt_config: string | null}
+export default function encrypt_msg(pattern: string, msg: string): {crypted_msg: string, decrypt_config: string | null, msg: string}
 {
+    if(msg.length == 0)
+    {
+        return {
+            crypted_msg: "error",
+            decrypt_config: null,
+            msg: ""
+        }
+    }
+
     let decrypt_config: string  = ""
     let crypted_msg: string = msg
     let key: string = ""
@@ -93,6 +102,7 @@ export default function encrypt_msg(pattern: string, msg: string): {crypted_msg:
 
     return {
         crypted_msg: crypted_msg,
-        decrypt_config: (decrypt_config.length > 0 ? decrypt_config.trim() : null)
+        decrypt_config: (decrypt_config.length > 0 ? decrypt_config.trim() : null),
+        msg: msg
     }
 }
