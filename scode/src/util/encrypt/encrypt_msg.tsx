@@ -84,6 +84,7 @@ export default function encrypt_msg(pattern: string, msg: string): {crypted_msg:
                 break
             case "°": // Order random
                 const rand = OrderTemplate.random(crypted_msg)
+                crypted_msg = rand.msg
                 decrypt_config += ` ${rand.alpha_ref.join('')}`
 
         }
@@ -92,6 +93,6 @@ export default function encrypt_msg(pattern: string, msg: string): {crypted_msg:
 
     return {
         crypted_msg: crypted_msg,
-        decrypt_config: decrypt_config.length > 0 ? decrypt_config.trim() : null
+        decrypt_config: (decrypt_config.length > 0 ? decrypt_config.trim() : null)
     }
 }

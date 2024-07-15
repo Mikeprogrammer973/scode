@@ -43,7 +43,7 @@ export function polybeDecode(encoded: string, gridSeq: string): string {
     const grid = generateGrid(gridSeq)
     const decodeChar = (pair: string) => {
         const [r, c] = pair.split('').map(n => parseInt(n) - 1);
-        return grid[r][c];
+        return grid[r][c] || "";
     };
     return encoded.split(' ').map(pair => decodeChar(pair)).join('');
 }

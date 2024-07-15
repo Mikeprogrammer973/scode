@@ -3,15 +3,15 @@ import PatternSymbols from "../refs/pattern_symbols_refs"
 export default function valid_decrypt_config(pattern: string, config: string | null): boolean
 {
     let valid = true
+    const w_config_symbols: string[] = pattern.split('').filter(symbol =>{
+        if(PatternSymbols.with_config().indexOf(symbol) != -1) return symbol
+    })
     
-    if(config == null){
+    if(config == null && w_config_symbols.length > 0){
         valid = false
     } else{
-        const w_config_symbols: string[] = pattern.split('').filter(symbol =>{
-            if(PatternSymbols.with_config().indexOf(symbol)) return symbol
-        })
         
-        const config_: string[] = config.split(' ')
+        const config_: string[] = config?.split(' ') || []
 
         w_config_symbols.forEach(symbol =>{
             switch(symbol)
@@ -24,7 +24,7 @@ export default function valid_decrypt_config(pattern: string, config: string | n
                     }
                     break
                 case "?": // SCEnigma
-                    if(config.length < 11)
+                    if(config_.length < 11)
                     {
                         valid = false
                         return

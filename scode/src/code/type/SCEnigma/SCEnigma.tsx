@@ -60,7 +60,7 @@ class SCEnigma
 
 export default function codificar(msg: string): SCEKey {
     const rotors: SCECRotor[] = []
-    for(let i = 0; i < 10; i++) rotors.push(new SCECRotor(new Alphabet().shuffle().get().join(''), Math.round(Math.random() * 7000)))
+    for(let i = 0; i < 10; i++) rotors.push(new SCECRotor(new Alphabet().shuffle().get().join(''), 7))
     const reflector = new SCECReflector("YRUHQSLDPXNGOKMIEBFZCWVJAT")
     
     const plugboard = new SCECPlugboard([])

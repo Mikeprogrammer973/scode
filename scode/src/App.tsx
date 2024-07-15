@@ -32,11 +32,11 @@ function App() {
   const enigmaKey = codificar(msg)
   const polybe = polybeEncode(msg)
 
-  const pattern = "&?:|§"
+  const pattern = "°?~::°¬"
   
   if(valid_pattern(pattern))
   {
-    const encode = encrypt_msg(pattern, format_str(txt))
+    const encode = encrypt_msg(pattern, format_str("amigavel"))
     const decode = decrypt_msg(pattern, encode.decrypt_config, encode.crypted_msg)
     console.log(encode)
     console.log(decode)

@@ -19,7 +19,6 @@ export default class OrderTemplate
         let formated_msg = ""
         const alpha_s = (revert ? ref : new Alphabet().shuffle().get())
         const alpha_n = new Alphabet().normal().get()
-
         for(let i = 0; i < msg.length; i++)
         {
             formated_msg += (revert ? alpha_n[(alpha_s || []).indexOf(msg[i])] : (alpha_s || [])[alpha_n.indexOf(msg[i])])
