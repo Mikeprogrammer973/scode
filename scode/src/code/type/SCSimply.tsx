@@ -1,4 +1,4 @@
-import Alphabet from "../../util/alphabet_reference"
+import Alphabet from "../../util/refs/alphabet_reference"
 import Code from "../Code"
 
 export enum SCSCodeLevel {

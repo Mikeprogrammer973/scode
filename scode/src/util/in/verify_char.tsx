@@ -1,4 +1,4 @@
-import Alphabet from "./alphabet_reference";
+import Alphabet from "../refs/alphabet_reference";
 
 export default function valid_char(char: string): boolean
 {

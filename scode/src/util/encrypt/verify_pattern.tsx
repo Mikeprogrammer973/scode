@@ -1,4 +1,4 @@
-import PatternSymbols from "./pattern_symbols_refs"
+import PatternSymbols from "../refs/pattern_symbols_refs"
 
 export default function valid_pattern(pattern: string): boolean
 {

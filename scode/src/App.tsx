@@ -1,8 +1,8 @@
 import { Routes, Route, Link } from 'react-router-dom'
-import { logo } from './util/logo';
+import { logo } from './util/global/logo';
 import SCFrama from './code/type/SCFrama';
 import MutationTemplate from './code/alpha_template/MutationTemplate';
-import format_str from './util/format_str';
+import format_str from './util/in/format_str';
 import SCMorse from './code/type/SCMorse';
 import OrderTemplate from './code/alpha_template/OrderTemplate';
 import SCSimply, { SCSCodeLevel } from './code/type/SCSimply';
@@ -17,7 +17,8 @@ import Encrypt from './interface/Encrypt';
 import Decrypt from './interface/Decrypt';
 import Home from './interface/Home';
 import encrypt_msg from './util/encrypt/encrypt_msg';
-import valid_pattern from './util/verify_pattern';
+import valid_pattern from './util/encrypt/verify_pattern';
+import decrypt_msg from './util/decrypt/decrypt_msg';
 
 function App() {
 
@@ -35,7 +36,10 @@ function App() {
   
   if(valid_pattern(pattern))
   {
-    console.log(encrypt_msg(pattern, format_str(txt), format_str("Maria Santos")))
+    const encode = encrypt_msg(pattern, format_str(txt))
+    const decode = decrypt_msg(pattern, encode.decrypt_config, encode.crypted_msg)
+    console.log(encode)
+    console.log(decode)
   } else{
     console.error("Invalid Pattern")
   }

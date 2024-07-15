@@ -1,7 +1,7 @@
 import SCECRotor from "./SCEComponent/SCECRotor";
 import SCECReflector from "./SCEComponent/SCECReflector";
 import SCECPlugboard from "./SCEComponent/SCECPlugboard";
-import Alphabet from "../../../util/alphabet_reference";
+import Alphabet from "../../../util/refs/alphabet_reference";
 
 class SCEnigma
 {

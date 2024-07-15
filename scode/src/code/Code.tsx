@@ -1,4 +1,4 @@
-import Alphabet from "../util/alphabet_reference";
+import Alphabet from "../util/refs/alphabet_reference";
 import ICode from "./ICode";
 
 export default abstract class Code implements ICode

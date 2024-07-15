@@ -1,5 +1,5 @@
 import { useState } from "react"
-import format_str from "../util/format_str"
+import format_str from "../util/in/format_str"
 import MutationTemplate from "../code/alpha_template/MutationTemplate"
 import OrderTemplate from "../code/alpha_template/OrderTemplate"
 import SCSimply, { SCSCodeLevel } from "../code/type/SCSimply"
@@ -11,9 +11,9 @@ import SCVigenere from "../code/type/SCVigenere"
 import SCFrama from "../code/type/SCFrama"
 import SCBacon from "../code/type/SCBacon"
 import polybeEncode from "../code/type/SCPolybe"
-import Spinner from "../util/spinner"
-import MsgBox from "../util/msgBox"
-import { Alert } from "../util/alert"
+import Spinner from "../util/global/spinner"
+import MsgBox from "../util/global/msgBox"
+import { Alert } from "../util/global/alert"
 
 export default function Encrypt(): JSX.Element
 {

@@ -9,11 +9,20 @@ import SCNavajo from "../../code/type/SCNavajo"
 import polybeEncode from "../../code/type/SCPolybe"
 import SCSimply, { SCSCodeLevel } from "../../code/type/SCSimply"
 import SCVigenere from "../../code/type/SCVigenere"
+import Alphabet from "../refs/alphabet_reference"
 
-export default function encrypt_msg(pattern: string, msg: string, key: string | null): {crypted_msg: string, decrypt_config: string | null}
+export default function encrypt_msg(pattern: string, msg: string): {crypted_msg: string, decrypt_config: string | null}
 {
     let decrypt_config: string  = ""
     let crypted_msg: string = msg
+    let key: string = ""
+
+    function generateKey(): string
+    {
+        return new Alphabet().shuffle().get().map((l, i)=>{
+            if(i < 10) return l
+        }).join('')
+    }
 
     pattern.split('').forEach(symbol =>{
         switch(symbol)
@@ -50,12 +59,12 @@ export default function encrypt_msg(pattern: string, msg: string, key: string | 
                 crypted_msg = enigmaKey.encryptMsg
                 break
             case "|": // SCVigenere
-                if(key == null) key = "KEY"
+                key = generateKey()
                 crypted_msg = new SCVigenere(key, crypted_msg).codificar()
                 decrypt_config += ` ${key}`
                 break
             case "§": // SCFrama
-                if(key == null) key = "KEY"
+                key = generateKey()
                 crypted_msg = new SCFrama(key).codificar(crypted_msg)
                 decrypt_config += ` ${key}`
                 break

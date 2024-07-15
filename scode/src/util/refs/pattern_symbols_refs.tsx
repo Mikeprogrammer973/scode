@@ -33,4 +33,16 @@ export default class PatternSymbols
             "°", // Order random
         ]
     }
+
+    static with_config(): string[]
+    {
+        return [
+            "#", // SCPolybe
+            "?", // SCEnigma
+            "|", // SCVigenere
+            "§", // SCFrama
+            "~", // Mutation decalage
+            "°" // Order random
+        ]
+    }
 }
