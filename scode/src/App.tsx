@@ -16,6 +16,8 @@ import Documentation from './interface/Documentation';
 import Encrypt from './interface/Encrypt';
 import Decrypt from './interface/Decrypt';
 import Home from './interface/Home';
+import encrypt_msg from './util/encrypt/encrypt_msg';
+import valid_pattern from './util/verify_pattern';
 
 function App() {
 
@@ -29,6 +31,14 @@ function App() {
   const enigmaKey = codificar(msg)
   const polybe = polybeEncode(msg)
 
+  const pattern = "&?:|§"
+  
+  if(valid_pattern(pattern))
+  {
+    console.log(encrypt_msg(pattern, format_str(txt), format_str("Maria Santos")))
+  } else{
+    console.error("Invalid Pattern")
+  }
 
   return (
     <div className="App">
@@ -143,7 +153,7 @@ function App() {
       </footer>
 
       
-      {true && <div className='text-left text-2xl p-7'>
+      {false && <div className='text-left text-2xl p-7'>
           {
             format_str(txt)
           }
@@ -303,6 +313,7 @@ function App() {
           {
             polybeDecode(polybe.msg, polybe.grid_ref)
           }
+          <br />
       </div>}
 
     </div>

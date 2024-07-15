@@ -1,4 +1,4 @@
-import verify_char from "./verify_char"
+import valid_char from "./verify_char"
 
 export default function format_str(str: string): string
 {
@@ -8,7 +8,7 @@ export default function format_str(str: string): string
 
     for(let i = 0; i < str.length; i++)
     {
-        if(verify_char(str[i])) formated_str += str[i]
+        if(valid_char(str[i])) formated_str += str[i]
     }
 
     return formated_str

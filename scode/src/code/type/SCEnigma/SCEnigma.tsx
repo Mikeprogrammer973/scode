@@ -70,7 +70,6 @@ export default function codificar(msg: string): SCEKey {
     return {
         rotors: rotors,
         reflector: reflector,
-        plugboard: plugboard,
         encryptMsg: encryptMessage
     }
 }
@@ -78,11 +77,10 @@ export default function codificar(msg: string): SCEKey {
 export type SCEKey = {
     rotors: SCECRotor[],
     reflector: SCECReflector,
-    plugboard: SCECPlugboard,
     encryptMsg: string
 }
 
 export function decodificar(key: SCEKey): string {
     key.rotors.forEach(rotor => rotor.position = 0)
-    return new SCEnigma(key.rotors, key.reflector, key.plugboard).encryptMessage(key.encryptMsg)
+    return new SCEnigma(key.rotors, key.reflector, new SCECPlugboard([])).encryptMessage(key.encryptMsg)
 }
