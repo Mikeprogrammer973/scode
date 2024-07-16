@@ -4,8 +4,15 @@ import Documentation from './interface/Documentation';
 import Encrypt from './interface/Encrypt';
 import Decrypt from './interface/Decrypt';
 import Home from './interface/Home';
+import { useState } from 'react';
 
 function App() {
+
+    const [sltMenu, setSltMenu] = useState<number>(Number(localStorage.getItem("sltMenu")) || 0)
+
+    const [slt, noSlt] = ['hover:text-gray-100 font-semibold', 'hover:text-gray-100 font-light']
+
+    localStorage.setItem("sltMenu", sltMenu.toString())
 
   return (
     <div className="App">
@@ -15,10 +22,10 @@ function App() {
           <h1 className='text-2xl font-semibold tracking-[15px] hidden sm:block' translate='no'>SCode</h1>
         </div>
         <nav className='flex gap-2 py-2 text-gray-300'>
-          <Link className='hover:text-gray-100 font-semibold' to={'/'}>Home</Link>
-          <Link className='hover:text-gray-100 font-semibold' to={'/doc'}>Documentation</Link>
-          <Link className='hover:text-gray-100 font-semibold' to={'/encrypt'}>Encrypt</Link>
-          <Link className='hover:text-gray-100 font-semibold' to={'/decrypt'}>Decrypt</Link>
+          <Link onClick={()=>setSltMenu(0)} className={ sltMenu == 0 ? slt : noSlt } to={'/'}>Home</Link>
+          <Link onClick={()=>setSltMenu(1)} className={ sltMenu == 1 ? slt : noSlt } to={'/doc'}>Documentation</Link>
+          <Link onClick={()=>setSltMenu(2)} className={ sltMenu == 2 ? slt : noSlt } to={'/encrypt'}>Encrypt</Link>
+          <Link onClick={()=>setSltMenu(3)} className={ sltMenu == 3 ? slt : noSlt } to={'/decrypt'}>Decrypt</Link>
         </nav>
       </header>
       <main className='bg-gray-50'>
