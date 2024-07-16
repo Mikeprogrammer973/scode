@@ -25,18 +25,17 @@ export default function Encrypt(): JSX.Element
                 const encode = encrypt_msg(pattern, format_str(txt))
                 if(encode.crypted_msg != "error")
                 {
-                    msg = <Alert color="success" title="SCode Encrypt" msg={
-                        <div>
-                            <br />
-                            <h3 className="font-bold text-lg">Message crypted successfully!</h3><br /><br />
-                            <GeneratePDF pattern={pattern} msg={encode.msg} crypted_msg={encode.crypted_msg} decrypt_config={encode.decrypt_config} />
-                        </div>
-                    } />
+                    msg = <div className="">
+                        <Alert color="success" title="SCode Encrypt" msg={<h3 className="font-semibold text-lg my-4">Message crypted successfully!</h3>} />
+                        <br />
+                        <br /><br />
+                        <GeneratePDF pattern={pattern} msg={encode.msg} crypted_msg={encode.crypted_msg} decrypt_config={encode.decrypt_config} />
+                    </div>
                 } else{
-                    msg = <Alert color="warning" title="SCode Encrypt" msg={<div>Your message is empty!</div>} />
+                    msg = <Alert color="warning" title="SCode Encrypt" msg={<div className="font-semibold text-lg my-4">Your message shouldn't be empty!</div>} />
                 }
             } else{
-                msg = <Alert color="danger" title="SCode Encrypt" msg={<div>Invalid encrypt pattern!</div>} />
+                msg = <Alert color="danger" title="SCode Encrypt" msg={<div className="font-semibold text-lg my-4">Invalid encrypt pattern!</div>} />
             }
             setSpinnerV(false)
             setAlert(msg)
@@ -49,7 +48,7 @@ export default function Encrypt(): JSX.Element
         <section className="bg-slate-800 p-5">
             <Spinner visible={spinnerV} />
             <MsgBox visible={msgBV} msg={alert} setVisible={setMsgBV} />
-            <div className="bg-slate-600 max-w-[70%] mx-auto p-5">
+            <div className="bg-slate-600 max-w-[100%] lg:max-w-[70%] mx-auto p-5">
                 <div className="h-full">
                     <div  className="h-full w-full p-5">
                         <div className="bg-blue-100 border-t-4 border-blue-500 text-blue-900 px-4 py-3 shadow-md">Type your text here</div>

@@ -12,7 +12,7 @@ function App() {
       <header className="p-3 bg-gray-900 text-white sticky top-0">
         <div>
           <img className='w-12 block sm:hidden' src={logo} alt="scode-logo" />
-          <h1 className='text-2xl font-semibold tracking-[15px] hidden sm:block'>SCode</h1>
+          <h1 className='text-2xl font-semibold tracking-[15px] hidden sm:block' translate='no'>SCode</h1>
         </div>
         <nav className='flex gap-2 py-2 text-gray-300'>
           <Link className='hover:text-gray-100 font-semibold' to={'/'}>Home</Link>
