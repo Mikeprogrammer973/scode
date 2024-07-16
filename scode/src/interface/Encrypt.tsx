@@ -45,17 +45,17 @@ export default function Encrypt(): JSX.Element
 
 
     return(
-        <section className="bg-slate-800 p-5">
+        <section className="p-5">
             <Spinner visible={spinnerV} />
             <MsgBox visible={msgBV} msg={alert} setVisible={setMsgBV} />
-            <div className="bg-slate-600 max-w-[100%] lg:max-w-[70%] mx-auto p-5">
+            <div className="max-w-[100%] md:max-w-[60%] mx-auto p-5">
                 <div className="h-full">
                     <div  className="h-full w-full p-5">
                         <div className="bg-blue-100 border-t-4 border-blue-500 text-blue-900 px-4 py-3 shadow-md">Type your text here</div>
-                        <textarea rows={10} onChange={e => {setTxt(e.target.value);}} value={format_str(txt)} className="bg-slate-900 text-gray-300 text-xl w-full p-5 outline-none"></textarea>
-                        <div className="mb-4">
+                        <textarea rows={10} onChange={e => {setTxt(e.target.value);}} value={format_str(txt)} className="block w-full rounded-b-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"></textarea>
+                        <div className="my-4">
                             <p className="bg-blue-100 border-t-4 border-blue-500 text-blue-900 px-4 py-3 shadow-md">Type your pattern here</p>
-                            <input value={pattern} onChange={(e)=>{setPattern(e.target.value)}} type="text" className="bg-black text-gray-300 text-xl text-center w-full p-5 outline-none"  />
+                            <input value={pattern} onChange={(e)=>{setPattern(e.target.value)}} type="text" className="block w-full rounded-b-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"  />
                         </div>
                         <button onClick={()=> generateCrypt()} className="flex w-full justify-center rounded-md bg-gray-800 px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm text-white hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">
                             Encrypt message

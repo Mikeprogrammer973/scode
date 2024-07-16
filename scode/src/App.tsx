@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <header className="p-3 bg-gray-900 text-white sticky top-0">
         <div>
-          <img className='w-12 block sm:hidden' src={logo} alt="scode-logo" />
+          <img className='h-10 w-auto hover:animate-spin sm:hidden' src={logo} alt="scode-logo" />
           <h1 className='text-2xl font-semibold tracking-[15px] hidden sm:block' translate='no'>SCode</h1>
         </div>
         <nav className='flex gap-2 py-2 text-gray-300'>
@@ -21,7 +21,7 @@ function App() {
           <Link className='hover:text-gray-100 font-semibold' to={'/decrypt'}>Decrypt</Link>
         </nav>
       </header>
-      <main>
+      <main className='bg-gray-50'>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='doc' element={<Documentation />} />

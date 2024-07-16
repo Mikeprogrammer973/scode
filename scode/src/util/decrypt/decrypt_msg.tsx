@@ -11,15 +11,21 @@ import SCNavajo from "../../code/type/SCNavajo";
 import { polybeDecode } from "../../code/type/SCPolybe";
 import SCSimply, { SCSCodeLevel } from "../../code/type/SCSimply";
 import SCVigenere from "../../code/type/SCVigenere";
+import { Alert } from "../global/alert";
 import valid_decrypt_config from "./verify_decrypt_config";
 
-export default function decrypt_msg(pattern: string, config: string | null, msg: string): string
+export default function decrypt_msg(pattern: string, config: string | null, msg: string): JSX.Element
 {
+    if(msg.length == 0)
+    {
+        return <Alert color="warning" title="SCode Decrypt" msg={<div className="font-semibold text-lg my-4">Your encrypted message shouldn't be empty!</div>} />
+    }
+
     let decrypted_msg: string = msg
 
     if(!valid_decrypt_config(pattern, config))
     {
-        return "Invalid decrypt configuration!"
+        return <Alert color="danger" title="SCode Decrypt" msg={<div className="font-semibold text-lg my-4">Invalid decryptage configuration!</div>} />
     } else{
         // Decrypt message
         const config_ = config?.split(' ').reverse()
@@ -91,5 +97,8 @@ export default function decrypt_msg(pattern: string, config: string | null, msg:
         })
     }
 
-   return decrypted_msg
+   return <Alert color="success" title="SCode Decrypt" msg={<div className="font-semibold text-lg my-4">
+    <h6 className="font-semibold">DECRYPTED MESSAGE</h6>
+    <p className="font-light">{decrypted_msg}</p>
+   </div>} />
 }

@@ -7,7 +7,7 @@ export default function valid_decrypt_config(pattern: string, config: string | n
         if(PatternSymbols.with_config().indexOf(symbol) != -1) return symbol
     })
     
-    if(config == null && w_config_symbols.length > 0){
+    if((config == null || config == "") && w_config_symbols.length > 0){
         valid = false
     } else{
         
@@ -75,7 +75,7 @@ export default function valid_decrypt_config(pattern: string, config: string | n
 
         })
 
-        if(config_.length > 0)
+        if(config_.length > 0 && config != "")
         {
             valid = false
         }
