@@ -41,7 +41,7 @@ export default function Decrypt(): JSX.Element
                 <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-2 lg:px-8">
                     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                             <div className="my-4">
-                                <label htmlFor="txt" className="block text-sm font-medium leading-6 text-gray-900">
+                                <label htmlFor="txt" className="block text-sm font-medium leading-6 text-gray-800 dark:text-gray-300">
                                     Encrypted message
                                 </label>
                                 <div className="mt-2">
@@ -49,12 +49,12 @@ export default function Decrypt(): JSX.Element
                                     onChange={e => {setTxt(e.target.value);}} value={txt}
                                     rows={3}
                                     id="txt"
-                                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 p-1.5 bg-transparent dark:text-gray-200 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm sm:text-xl sm:leading-6"
                                 ></textarea>
                                 </div>
                             </div>
                             <div className="my-4">
-                                <label htmlFor="config" className="block text-sm font-medium leading-6 text-gray-900">
+                                <label htmlFor="config" className="block text-sm font-medium leading-6 text-gray-800 dark:text-gray-300">
                                     Decryptage configuration
                                 </label>
                                 <div className="mt-2">
@@ -63,13 +63,13 @@ export default function Decrypt(): JSX.Element
                                     onChange={e => setConfig(e.target.value)}
                                     rows={5}
                                     id="config"
-                                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 p-1.5 bg-transparent dark:text-gray-200 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm sm:text-xl sm:leading-6"
                                 ></textarea>
                                 </div>
                             </div>
                             <div className="my-4">
                                 <div className="flex items-center justify-between">
-                                <label htmlFor="pattern" className="block text-sm font-medium leading-6 text-gray-900">
+                                <label htmlFor="pattern" className="block text-sm font-medium leading-6 text-gray-800 dark:text-gray-300">
                                     Pattern
                                 </label>
                                 </div>
@@ -77,7 +77,7 @@ export default function Decrypt(): JSX.Element
                                 <input
                                     value={pattern} onChange={(e)=>{setPattern(e.target.value)}}
                                     id="pattern"
-                                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 p-1.5 bg-transparent dark:text-gray-200 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm sm:text-xl sm:leading-6"
                                 />
                                 </div>
                             </div>
@@ -85,7 +85,7 @@ export default function Decrypt(): JSX.Element
                                 <button
                                     onClick={()=>decrypt()}
                                     type="submit"
-                                    className="flex w-full justify-center rounded-md bg-gray-800 px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm text-white hover:bg-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
+                                    className="flex w-full justify-center rounded-md bg-gray-800 dark:bg-gray-100 px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm text-white dark:text-gray-700 hover:bg-gray-600 dark:hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
                                 >
                                     Decrypt message
                                 </button>

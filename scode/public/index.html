@@ -24,7 +24,15 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title translate="no">SCode</title>
+    <title id="tt" translate="no">SCode</title>
+    <script>
+      let route = ""
+      setInterval(()=>{
+        if(window.name == route) return
+        document.getElementById("tt").innerHTML = window.name
+        route = window.name
+      }, 200)
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
