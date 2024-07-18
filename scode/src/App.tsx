@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { HandleHistory, routes } from './util/global';
 import Header from './util/global/header';
 import Footer from './util/global/footer';
+import Unfound from './interface/Unfound';
 
 function App() {
 
@@ -22,10 +23,11 @@ function App() {
         <Header dark={dark} setDark={setDark} />
       <main className='bg-gray-50 dark:bg-gray-800'>
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='doc' element={<Documentation />} />
-          <Route path='/encrypt' element={<Encrypt />} />
-          <Route path='/decrypt' element={<Decrypt />} />
+          <Route path='*' element={<Unfound />} />
+          <Route path={routes.home} element={<Home />} />
+          <Route path={routes.doc} element={<Documentation />} />
+          <Route path={routes.encrypt} element={<Encrypt />} />
+          <Route path={routes.decrypt} element={<Decrypt />} />
         </Routes>
       </main>
       <Footer />

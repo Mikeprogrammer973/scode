@@ -1,14 +1,14 @@
 import { NavigateFunction } from "react-router-dom"
 
+const routes_names = ["", "documentation", "encrypt", "decrypt"]
 export const routes = 
 {
-    home: "/home",
-    encrypt: "/encrypt",
-    decrypt: "/decrypt",
-    doc: "/doc"
+    home: `/${routes_names[0]}`,
+    encrypt: `/${routes_names[2]}`,
+    decrypt: `/${routes_names[3]}`,
+    doc: `/${routes_names[1]}`
 }
 
-const routes_names = ["home", "doc", "encrypt", "decrypt"]
 
 export function HandleHistory(url: string, navigate: NavigateFunction)
 {

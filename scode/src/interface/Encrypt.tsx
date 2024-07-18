@@ -48,7 +48,7 @@ export default function Encrypt(): JSX.Element
         <section className="p-5">
             <Spinner visible={spinnerV} />
             <MsgBox visible={msgBV} msg={alert} setVisible={setMsgBV} />
-            <div className="max-w-[100%] md:max-w-[60%] mx-auto p-5">
+            <div className="max-w-[100%] md:max-w-[60%] mx-auto p-5 rounded-lg shadow-lg bg-slate-200 dark:bg-slate-700">
                 <div className="h-full">
                     <div  className="h-full w-full p-5">
                         <div className="bg-blue-100 border-t-4 border-blue-500 text-blue-900 px-4 py-3 shadow-md">Type your text here</div>
