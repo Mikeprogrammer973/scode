@@ -43,15 +43,15 @@ export default function Header(Theme: {dark: boolean, setDark: React.Dispatch<Re
                 <div className="flex md:hidden">
                 <button  onClick={()=> setMenuV(true)} type="button" className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 dark:text-gray-300">
                     <span className="sr-only">Open main menu</span>
-                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
                 </button>
                 </div>
                 <div className="hidden md:flex md:gap-x-12">
                     {
                         navigation.map((n, i) => {
-                            return <Link onClick={()=>handleOpChange(i)} to={n.route} title={n.name} className={"text-sm leading-6 text-gray-600 dark:text-white" + (n.current ? " font-semibold" : " font-normal")}> {n.name} </Link>
+                            return <Link key={i} onClick={()=>handleOpChange(i)} to={n.route} title={n.name} className={"text-sm leading-6 text-gray-600 dark:text-white" + (n.current ? " font-semibold" : " font-normal")}> {n.name} </Link>
                         })
                     }
                 </div>
@@ -78,8 +78,8 @@ export default function Header(Theme: {dark: boolean, setDark: React.Dispatch<Re
                     </Link>
                     <button onClick={()=> setMenuV(false)} type="button" className="-m-2.5 rounded-md p-2.5 text-gray-700 dark:text-white">
                         <span className="sr-only">Close menu</span>
-                        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
@@ -88,7 +88,7 @@ export default function Header(Theme: {dark: boolean, setDark: React.Dispatch<Re
                     <div className="space-y-2 py-6">
                         {
                             navigation.map((n, i) => {
-                                return <Link onClick={()=> {setMenuV(false);handleOpChange(i)} } to={n.route} title={n.name} className={"-mx-3 block rounded-md px-3 py-2 text-sm leading-7 text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800" + (n.current ? " font-semibold" : " font-normal" )}> {n.name} </Link>
+                                return <Link key={i} onClick={()=> {setMenuV(false);handleOpChange(i)} } to={n.route} title={n.name} className={"-mx-3 block rounded-md px-3 py-2 text-sm leading-7 text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800" + (n.current ? " font-semibold" : " font-normal" )}> {n.name} </Link>
                             })
                         }
                     </div>

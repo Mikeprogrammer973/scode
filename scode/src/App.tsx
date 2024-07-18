@@ -1,5 +1,4 @@
 import { Routes, Route, Link, useNavigate } from 'react-router-dom'
-import { logo } from './util/global/logo';
 import Documentation from './interface/Documentation';
 import Encrypt from './interface/Encrypt';
 import Decrypt from './interface/Decrypt';
@@ -7,7 +6,7 @@ import Home from './interface/Home';
 import { useEffect, useState } from 'react';
 import { HandleHistory, routes } from './util/global';
 import Header from './util/global/header';
-import Footer from './util/footer';
+import Footer from './util/global/footer';
 
 function App() {
 
@@ -24,7 +23,7 @@ function App() {
       <main className='bg-gray-50 dark:bg-gray-800'>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='doc' element={<Documentation navigate={navigate} />} />
+          <Route path='doc' element={<Documentation />} />
           <Route path='/encrypt' element={<Encrypt />} />
           <Route path='/decrypt' element={<Decrypt />} />
         </Routes>
