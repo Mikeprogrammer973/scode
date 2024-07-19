@@ -1,46 +1,57 @@
-# Getting Started with Create React App
+# Função `encrypt_msg`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A função `encrypt_msg` criptografa uma mensagem de acordo com um padrão fornecido. Ela suporta múltiplos métodos de criptografia, aplicando-os sequencialmente conforme definido pelo padrão.
 
-## Available Scripts
+## Parâmetros
 
-In the project directory, you can run:
+- `pattern` (string): Uma string contendo símbolos, onde cada símbolo representa um método de criptografia específico.
+- `msg` (string): A mensagem que será criptografada.
 
-### `npm start`
+## Retorno
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Um objeto com as seguintes propriedades:
+  - `crypted_msg` (string): A mensagem criptografada.
+  - `decrypt_config` (string | null): Configuração necessária para descriptografar a mensagem, ou `null` se não houver configuração específica.
+  - `msg` (string): A mensagem original.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Exemplo de Uso
 
-### `npm test`
+```javascript
+import encrypt_msg from './caminho/para/o/arquivo';
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+const pattern = "$@#";
+const message = "Hello, World!";
+const result = encrypt_msg(pattern, message);
 
-### `npm run build`
+console.log(result.crypted_msg); // Mensagem criptografada
+console.log(result.decrypt_config); // Configuração de descriptografia
+console.log(result.msg); // Mensagem original
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Função `decrypt_msg`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+A função `decrypt_msg` descriptografa uma mensagem de acordo com um padrão e configuração fornecidos. Ela suporta múltiplos métodos de descriptografia, aplicando-os sequencialmente conforme definido pelo padrão.
 
-### `npm run eject`
+## Parâmetros
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- `pattern` (string): Uma string contendo símbolos, onde cada símbolo representa um método de criptografia específico.
+- `config` (string | null): Configuração necessária para descriptografar a mensagem, ou `null` se não houver configuração específica.
+- `msg` (string): A mensagem que será descriptografada.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Retorno
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Um elemento JSX que exibe a mensagem descriptografada ou uma mensagem de erro caso a descriptografia não seja bem-sucedida.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Exemplo de Uso
 
-## Learn More
+```javascript
+import decrypt_msg from './caminho/para/o/arquivo';
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+const pattern = "$@#";
+const config = "configuração correspondente";
+const message = "Mensagem criptografada";
+const result = decrypt_msg(pattern, config, message);
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+// Renderiza o resultado em um componente React
+
