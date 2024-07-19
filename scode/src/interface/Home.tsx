@@ -5,7 +5,7 @@ export default function Home(): JSX.Element
 {
     return(
         <div>
-            <section className="grid grid-cols-1 sm:grid-cols-2 items-center h-screen mb-10">
+            <section className="grid grid-cols-1 sm:grid-cols-2 items-center">
                 <div className="text-gray-700 dark:text-white py-7 bg-gray-50 dark:bg-gray-800 aspect-square flex flex-col items-center justify-center text-center px-4">
                     <h1 className="text-6xl font-bold mb-4">Welcome to SCode</h1>
                     <p className="text-2xl mb-8">Transform your messages with our hand-coding tools.</p>
@@ -14,7 +14,7 @@ export default function Home(): JSX.Element
                 <img className="aspect-square hidden sm:block" src="https://assets.esecurityplanet.com/uploads/2023/12/esp_20231207-types-of-encryption.png" alt="" />
             </section> 
 
-            <section id="about" className="py-16 mt-20 px-4 md:px-8 lg:px-16 text-gray-700 dark:text-white bg-gray-100 dark:bg-gray-600">
+            <section id="about" className="py-16 px-4 md:px-8 lg:px-16 text-gray-700 dark:text-white bg-gray-100 dark:bg-gray-600">
                 <h2 className="text-4xl font-bold text-center mb-8">About</h2>
                 <p className="text-lg text-gray-700 dark:text-white max-w-3xl mx-auto text-center">SCode offers simple and effective tools for encoding and decoding messages using manual methods such as Morse code. Ideal for cryptography enthusiasts and anyone who wants to learn more about different coding methods.</p>
             </section>
