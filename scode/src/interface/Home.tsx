@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { routes } from "../util/global";
 
 export default function Home(): JSX.Element
 {
@@ -7,7 +9,7 @@ export default function Home(): JSX.Element
                 <div className="text-gray-700 dark:text-white bg-gray-50 dark:bg-gray-700 aspect-square flex flex-col items-center justify-center text-center px-4">
                     <h1 className="text-6xl font-bold mb-4">Welcome to SCode</h1>
                     <p className="text-2xl mb-8">Transform your messages with our hand-coding tools.</p>
-                    <a href="#tools" className="bg-blue-600 text-white py-3 px-6 rounded-md text-lg font-semibold hover:bg-blue-700 transition duration-300">Comece Agora</a>
+                    <Link to={routes.encrypt} className="bg-blue-600 text-white py-3 px-6 rounded-md text-lg font-semibold hover:bg-blue-700 transition duration-300">Start Now</Link>
                 </div>
                 <img className="aspect-square hidden sm:block" src="https://assets.esecurityplanet.com/uploads/2023/12/esp_20231207-types-of-encryption.png" alt="" />
             </section> 
