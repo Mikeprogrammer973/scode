@@ -22,6 +22,27 @@ export default class PatternSymbols
         ]
     }
 
+    static all_names()
+    {
+        return [
+            "SCSimply.key", // SCSimply TK
+            "SCSimply.key_m", // SCSimply TM
+            "SCSimply.a_num", // SCSimply Num
+            "SCMorse", // SCMorse
+            "SCBinary", // SCBinary
+            "SCPolybe", // SCPolybe
+            "SCNavajo", // SCNavajo
+            "SCEnigma", // SCEnigma
+            "SCVigenere", // SCVigenere
+            "SCFrama", // SCFrama
+            "SCBacon", // SCBacon
+            "MutationTemplate.reciprocity", // Mutation reciproque
+            "MutationTemplate.decalation", // Mutation decalage
+            "OrderTemplate.reverse", // Order reverse
+            "OrderTemplate.random", // Order random
+        ]
+    }
+
     static global(): string[]
     {
         return [

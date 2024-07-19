@@ -1,6 +1,26 @@
+import { Alert } from "../util/global/alert";
+import PatternSymbols from "../util/refs/pattern_symbols_refs";
 
 export default function Documentation(): JSX.Element
 {
+  const examples: {explanation: string, pattern: string}[] = [
+    {
+      explanation: "Encodes the message in Morse code",
+      pattern: "¬"
+    },
+    {
+      explanation: "Encodes the message using the SCEnigma type",
+      pattern: "?"
+    },
+    {
+      explanation: "First, encode the message with the MutationTemplate.reciprocity type and then encode the previous encoding with the SCFrama type",
+      pattern: "&§"
+    },
+    {
+      explanation: "First, it encodes the message with the OrderTemplate.random type, then it encodes the previous encoding with the SCVigenère type and, finally, it passes the last encoding (the SCVigenère type) into the SCPolybe type",
+      pattern: "°|#"
+    }
+  ]
   return (
     <div style={{fontFamily: "monospace"}} className="mx-auto max-w-7xl p-6 md:px-8 text-lg text-gray-600 dark:text-gray-300">
         <details className="my-6 bg-slate-200 dark:bg-slate-700 p-5 rounded-lg">
@@ -77,7 +97,7 @@ export default function Documentation(): JSX.Element
                         <div className="px-4 py-2">
                           <p><strong>key:</strong> Creates a list of letters from A to Z (65 to 90).</p>
                           <p><strong>key_m:</strong> Creates a pattern that alternates between letters A to Z(65 to 90) and Z to A(90 to 65).</p>
-                          <p><strong>a_num:</strong>: Creates a list of numbers representing the positions of letters in the alphabet (A=1, B=2, etc.).</p>
+                          <p><strong>a_num:</strong> Creates a list of numbers representing the positions of letters in the alphabet (A=1, B=2, etc.).</p>
                         </div>
                       </div>
                     </div>
@@ -371,7 +391,7 @@ export default function Documentation(): JSX.Element
                         Output and Plugboard:
                       </li>
                       <ul className="list-inside list-disc px-4 py-2">
-                        <li>O número é convertido de volta para uma letra.</li>
+                        <li>The number is converted back to a letter.</li>
                         <li>The letter go through the plugboard again for the final change.</li>
                       </ul>
                     </div>
@@ -410,7 +430,7 @@ export default function Documentation(): JSX.Element
                         Plugboard Configuration:
                       </li>
                       <ul className="list-inside list-disc px-4 py-2">
-                        <li>O plugboard é configurado sem trocas de letras (vazio).</li>
+                        <li>The plugboard is configured without changing letters (empty).</li>
                       </ul>
                     </div>
                     <div className="px-4 py-2">
@@ -595,8 +615,89 @@ export default function Documentation(): JSX.Element
             </details>
             <details className="px-4 py-2 ">
               <summary className="text-xl font-semibold  cursor-pointer">Pattern</summary>
+              <p className="px-4 py-2 ">A coding pattern is the combination of one or more symbols.</p>
               <details className="px-4 py-2 ">
                 <summary className="text-lg font-semibold  cursor-pointer">Symbols</summary>
+                <p className="px-4 py-2 ">
+                  Each type of cipher is referenced by a specific symbol. And it is from these symbols that coding patterns are formed.
+                  Here are these symbols:
+                </p>
+                <div className="overflow-x-scroll">
+                  <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mx-4 my-2">
+                    <thead className="text-xs text-gray-100 uppercase bg-gray-400 dark:bg-gray-500 dark:text-gray-200">
+                      <tr className="">
+                        <th scope="col" className="px-6 py-3">Class</th>
+                        <th scope="col" className="px-6 py-3">Symbol</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {
+                        PatternSymbols.all().map((symbol, i) =>{
+                          return <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-300 even:dark:bg-gray-800 border-b dark:border-gray-700" key={symbol}>
+                            <td className="px-6 py-4" key={i+1}> {PatternSymbols.all_names()[i]} </td>
+                            <td className="px-6 py-4" key={i+2}> {symbol} </td>
+                          </tr>
+                        })
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+              <details className="px-4 py-2 ">
+                <summary className="text-lg font-semibold  cursor-pointer">Pattern construction</summary>
+                <p className="px-4 py-2 ">
+                  As mentioned before, a pattern is a combination of one or several symbols. Here are some examples:
+                </p>
+                <div className="overflow-x-scroll mx-4 my-2">
+                  <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mx-4 my-2">
+                    <thead className="text-xs text-gray-100 uppercase bg-gray-400 dark:bg-gray-500 dark:text-gray-200">
+                      <tr className="">
+                        <th scope="col" className="px-6 py-3">Explanation</th>
+                        <th scope="col" className="px-6 py-3">Pattern</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {
+                        examples.map((exp, i) =>{
+                          return <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-300 even:dark:bg-gray-800 border-b dark:border-gray-700" key={i}>
+                            <td className="px-6 py-4" key={i+1}> {exp.explanation} </td>
+                            <td className="px-6 py-4" key={i+2}> {exp.pattern} </td>
+                          </tr>
+                        })
+                      }
+                    </tbody>
+                  </table>
+                </div>
+                <div className="px-4 py-2 ">
+                  <Alert color="warning" title="Attention" msg={
+                    <div>
+                      <p className="py-2 font-semibold">Some symbols can only be placed at the end of patterns, that is, an error will be generated if they are placed in the middle of others.</p>
+                      <div className="overflow-x-scroll">
+                        <table className="w-full text-sm text-left rtl:text-right text-red-500 dark:text-red-400">
+                          <thead className="text-xs text-red-100 uppercase bg-red-400 dark:bg-red-500 dark:text-red-200">
+                            <tr className="">
+                              <th scope="col" className="px-6 py-3">Class</th>
+                              <th scope="col" className="px-6 py-3">Symbol</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {
+                              PatternSymbols.all().map((symbol, i) =>{
+                                if(PatternSymbols.with_config().indexOf(symbol) == -1)
+                                {
+                                  return <tr className="odd:bg-white odd:dark:bg-red-900 even:bg-red-300 even:dark:bg-red-800 border-b dark:border-red-700" key={symbol}>
+                                    <td className="px-6 py-4" key={i+1}> {PatternSymbols.all_names()[i]} </td>
+                                    <td className="px-6 py-4" key={i+2}> {symbol} </td>
+                                  </tr>
+                                }
+                              })
+                            }
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  } />
+                </div>
               </details>
             </details>
           </details>
@@ -604,6 +705,20 @@ export default function Documentation(): JSX.Element
 
         <details className=" my-6 bg-slate-200 dark:bg-slate-700 p-5 rounded-lg">
           <summary  className="text-xl font-bold cursor-pointer">Decrypt</summary>
+          <p className="px-4 py-2 ">Each encoding generated here on our platform is followed by a document containing the settings to decode it.</p>
+          <details className="px-4 py-2 ">
+            <summary className="text-xl font-bold cursor-pointer">Tutorial</summary>
+            <p className="px-4 py-2 ">
+              For decoding, follow the following steps:
+            </p>
+            <div>
+              <ol className="list-inside px-4 py-2" style={{listStyleType: "number"}}>
+                <li><strong>Place the encrypted message in the first text box.</strong></li>
+                <li><strong>Place the configuration parameters in the second box (if not, leave it empty).</strong></li>
+                <li><strong>Finally, place the pattern (the one used to encode the message) in the last text box and click the "Decrypt message" button to begin the decoding process.</strong></li>
+              </ol>
+            </div>
+          </details>
         </details>
     </div>
   )
