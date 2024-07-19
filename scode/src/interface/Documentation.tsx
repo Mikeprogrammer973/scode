@@ -688,7 +688,7 @@ export default function Documentation(): JSX.Element
                                     <tbody>
                                       {
                                         PatternSymbols.all().map((symbol, i) =>{
-                                          if(PatternSymbols.with_config().indexOf(symbol) == -1)
+                                          if(PatternSymbols.global().indexOf(symbol) == -1)
                                           {
                                             return <tr className="odd:bg-white odd:dark:bg-red-900 even:bg-red-300 even:dark:bg-red-800 border-b dark:border-red-700" key={symbol}>
                                               <td className="px-6 py-4" key={i+1}> {PatternSymbols.all_names()[i]} </td>
