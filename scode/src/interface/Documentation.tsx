@@ -669,34 +669,42 @@ export default function Documentation(): JSX.Element
                   </table>
                 </div>
                 <div className="px-4 py-2 ">
-                  <Alert color="warning" title="Attention" msg={
-                    <div>
-                      <p className="py-2 font-semibold">Some symbols can only be placed at the end of patterns, that is, an error will be generated if they are placed in the middle of others.</p>
-                      <div className="overflow-x-scroll">
-                        <table className="w-full text-sm text-left rtl:text-right text-red-500 dark:text-red-400">
-                          <thead className="text-xs text-red-100 uppercase bg-red-400 dark:bg-red-500 dark:text-red-200">
-                            <tr className="">
-                              <th scope="col" className="px-6 py-3">Class</th>
-                              <th scope="col" className="px-6 py-3">Symbol</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {
-                              PatternSymbols.all().map((symbol, i) =>{
-                                if(PatternSymbols.with_config().indexOf(symbol) == -1)
-                                {
-                                  return <tr className="odd:bg-white odd:dark:bg-red-900 even:bg-red-300 even:dark:bg-red-800 border-b dark:border-red-700" key={symbol}>
-                                    <td className="px-6 py-4" key={i+1}> {PatternSymbols.all_names()[i]} </td>
-                                    <td className="px-6 py-4" key={i+2}> {symbol} </td>
-                                  </tr>
-                                }
-                              })
-                            }
-                          </tbody>
-                        </table>
+                <div className={"bg-orange-100 border-t-4 border-orange-500 rounded-b text-orange-900 px-4 py-3 shadow-md overflow-x-scroll"} role="alert">
+                  <div className="flex">
+                        <div className="py-1"><svg className={"fill-current h-6 w-6 text-red-500 mr-4"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+                          <div>
+                              <p className="font-bold text-xl"> Attention </p>
+                              <div className="text-sm"> 
+                              <div>
+                                <p className="py-2 font-semibold">Some symbols can only be placed at the end of patterns, that is, an error will be generated if they are placed in the middle of others.</p>
+                                <div className="">
+                                  <table className="w-full text-sm text-left rtl:text-right text-red-500 dark:text-red-400">
+                                    <thead className="text-xs text-red-100 uppercase bg-red-400 dark:bg-red-500 dark:text-red-200">
+                                      <tr className="">
+                                        <th scope="col" className="px-6 py-3">Class</th>
+                                        <th scope="col" className="px-6 py-3">Symbol</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {
+                                        PatternSymbols.all().map((symbol, i) =>{
+                                          if(PatternSymbols.with_config().indexOf(symbol) == -1)
+                                          {
+                                            return <tr className="odd:bg-white odd:dark:bg-red-900 even:bg-red-300 even:dark:bg-red-800 border-b dark:border-red-700" key={symbol}>
+                                              <td className="px-6 py-4" key={i+1}> {PatternSymbols.all_names()[i]} </td>
+                                              <td className="px-6 py-4" key={i+2}> {symbol} </td>
+                                            </tr>
+                                          }
+                                        })
+                                      }
+                                    </tbody>
+                                  </table>
+                                </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  } />
+                  </div>
                 </div>
               </details>
             </details>
