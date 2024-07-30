@@ -62,17 +62,17 @@ export default function GeneratePDF(encode: {crypted_msg: string, decrypt_config
                 <br /><br />
                 <div>
                     <h3><strong>ORIGINAL MESSAGE</strong></h3>
-                    <p>{encode.msg}</p>
+                    <p style={{wordBreak: "break-all"}}>{encode.msg}</p>
                     <br />
                     <h3><strong>ENCRYPTED MESSAGE</strong></h3>
-                    <p>{encode.crypted_msg}</p>
+                    <p style={{wordBreak: "break-all"}}>{encode.crypted_msg}</p>
                     <br />
                     <h3><strong>DECRYPTAGE CONFIGURATION</strong></h3>
                     <div className="p-4">
                         <h6><strong className="font-medium">PATTERN</strong></h6>
-                        <p>{encode.pattern}</p>
+                        <p style={{wordBreak: "break-all"}}>{encode.pattern}</p>
                         <br />
-                        {encode.decrypt_config != null && <><h6><strong className="font-medium">PARAMETERS</strong></h6><p className="w-full">{encode.decrypt_config}</p></>}
+                        {encode.decrypt_config != null && <><h6><strong className="font-medium">PARAMETERS</strong></h6><p style={{wordBreak: "break-all"}} className="w-full">{encode.decrypt_config}</p></>}
                     </div>
                 </div>
             </div>
