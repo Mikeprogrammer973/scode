@@ -5,7 +5,7 @@ import MsgBox from "../util/global/msgBox"
 import { Alert } from "../util/global/alert"
 import valid_pattern from "../util/encrypt/verify_pattern"
 import encrypt_msg from "../util/encrypt/encrypt_msg"
-import GeneratePDF from "../util/out/generate_pdf"
+import { PdfContent } from "../util/out/generate_pdf"
 
 export default function Encrypt(): JSX.Element
 {
@@ -26,10 +26,9 @@ export default function Encrypt(): JSX.Element
                 if(encode.crypted_msg != "error")
                 {
                     msg = <div className="">
-                        <Alert color="success" title="SCode Encrypt" msg={<h3 className="font-semibold text-lg my-4">Message crypted successfully!</h3>} />
+                        <Alert color="info" title="SCode Encrypt" msg={<h3 className="font-semibold text-lg my-4">Message crypted successfully!</h3>} />
                         <br />
-                        <br /><br />
-                        <GeneratePDF pattern={pattern} msg={encode.msg} crypted_msg={encode.crypted_msg} decrypt_config={encode.decrypt_config} />
+                        <PdfContent original_msg={encode.msg} encrypt_msg={encode.crypted_msg} decryp_config={{pattern: pattern, params: encode.decrypt_config as string}} />
                     </div>
                 } else{
                     msg = <Alert color="warning" title="SCode Encrypt" msg={<div className="font-semibold text-lg my-4">Your message shouldn't be empty!</div>} />

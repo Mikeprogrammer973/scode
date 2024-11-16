@@ -9,7 +9,7 @@ export default function Footer(): JSX.Element
               >
               <ul className="flex flex-wrap justify-center gap-4 text-xs lg:justify-end">
                   <li onClick={()=>window.open("mailto:technopro.net@gmail.com", "_blank")} className="text-gray-500 transition hover:opacity-75 tracking-widest dark:text-gray-400 cursor-default">
-                      &copy; TechnoPro {new Date().getFullYear()} :: All Rights Reserved
+                      &copy; Secret Code {new Date().getFullYear()} :: All Rights Reserved
                   </li>
               </ul>
 
