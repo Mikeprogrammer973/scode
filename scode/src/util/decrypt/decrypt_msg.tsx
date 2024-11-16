@@ -97,7 +97,7 @@ export default function decrypt_msg(pattern: string, config: string | null, msg:
         })
     }
 
-   return <Alert color="success" title="SCode Decrypt" msg={<div className="font-semibold text-lg my-4">
+   return <Alert color="info" title="SCode Decrypt" msg={<div className="font-semibold text-lg my-4">
     <h6 className="font-semibold">DECRYPTED MESSAGE</h6>
     <p style={{wordBreak: "break-all"}} className="font-light">{decrypted_msg}</p>
    </div>} />
