@@ -72,7 +72,7 @@ export function PdfContent(content: PdfContent)
                                 <h3 className="text-lg font-medium text-gray-600 mb-2">
                                     Parameters
                                 </h3>
-                                <p className="text-gray-600 bg-gray-100 p-4 rounded">
+                                <p className="text-gray-600 bg-gray-100 p-4 rounded break-all">
                                     {content.decryp_config.params}
                                 </p>
                             </div>
