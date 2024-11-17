@@ -3,6 +3,9 @@ import { saveAs } from "file-saver";
 import { logo } from "../global/logo";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { FaFilePdf } from "react-icons/fa6"
+import { FaFileWord } from "react-icons/fa"
+import { BiSolidFileTxt } from "react-icons/bi"
 
 interface PdfContent {
     original_msg: string
@@ -52,10 +55,10 @@ export function PdfContent(content: PdfContent)
                                 {content.encrypt_msg}
                             </p>
                         </section>
-                        {/* Decryptage Config */}
+                        {/* Decode Config */}
                         <section className="mb-6">
                             <h2 className="text-xl font-semibold text-gray-700 mb-4">
-                                Decryptage Config
+                                Decode Config
                             </h2>
                             {/* Subseção: Pattern */}
                             <div className="mb-4">
@@ -84,25 +87,28 @@ export function PdfContent(content: PdfContent)
                 </div>
             </div>
 
-            <div className="grid gap-4 grid-cols-1 md:grid-cols-3">
-                <button
-                    onClick={generatePDF_}
-                    className="mt-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
-                >
-                    Download PDF DOC
-                </button>
-                <button
-                    onClick={()=>generateWordDocument(content)}
-                    className="mt-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
-                >
-                    Download WORD DOC
-                </button>
-                <button
-                    onClick={()=>generateTxtFile(content)}
-                    className="mt-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
-                >
-                    Download TXT DOC
-                </button>
+            <div>
+              <p className="py-4 text-lg text-gray-500 font-medium">Download the decode configuration document:</p>
+              <div className="grid gap-4 grid-cols-1 sm:grid-cols-3">
+                  <button
+                      onClick={generatePDF_}
+                      className="p-4 flex items-center justify-center bg-red-500 text-white rounded hover:bg-red-700"
+                  >
+                    <FaFilePdf size={50} />
+                  </button>
+                  <button
+                      onClick={()=>generateWordDocument(content)}
+                      className="p-4 flex items-center justify-center bg-blue-500 text-white rounded hover:bg-blue-700"
+                  >
+                      <FaFileWord size={50} />
+                  </button>
+                  <button
+                      onClick={()=>generateTxtFile(content)}
+                      className="p-4 flex items-center justify-center bg-gray-500 text-white rounded hover:bg-gray-700"
+                  >
+                      <BiSolidFileTxt size={50} />
+                  </button>
+              </div>
             </div>
         </div>
     )
@@ -225,11 +231,11 @@ export const generateWordDocument = (content: PdfContent) => {
                 spacing: { after: 300 },
               } as IParagraphOptions),
     
-              // Corpo: Decryptage Config
+              // Corpo: Decode Config
               new Paragraph({
                 children: [
                     new TextRun({
-                        text: "Decryptage Config:",
+                        text: "Decode Config:",
                         bold: true,
                         size: 24,
                         color: "2B6CB0", // Azul para os subtítulos
@@ -305,7 +311,7 @@ const generateTxtFile = (content_: PdfContent) => {
       Encrypted Message:
       ${content_.encrypt_msg}
   
-      Decryptage Config:
+      Decode Config:
 
       - Pattern: 
       ${content_.decryp_config.pattern}
