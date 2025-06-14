@@ -22,7 +22,7 @@ export default function Documentation(): JSX.Element
     }
   ]
   return (
-    <div style={{fontFamily: "monospace"}} className="mx-auto max-w-7xl p-6 md:px-8 text-lg text-gray-600 dark:text-gray-300">
+    <div style={{fontFamily: "monospace"}} className="mx-auto max-w-7xl min-h-full flex items-center justify-between flex-wrap gap-5 p-6 md:px-8 text-lg text-gray-600 dark:text-gray-300">
         <details className="my-6 bg-slate-200 dark:bg-slate-700 p-5 rounded-lg">
           <summary className="text-xl font-bold cursor-pointer">Overview</summary>
           <p className="px-4 py-2">

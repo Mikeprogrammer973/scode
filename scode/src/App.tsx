@@ -21,7 +21,7 @@ function App() {
   return (
     <div className={dark ? "dark" : "light"}>
         <Header dark={dark} setDark={setDark} />
-      <main className='bg-gray-50 dark:bg-gray-800'>
+      <main className='bg-gray-50 dark:bg-gray-800 min-h-screen'>
         <Routes>
           <Route path='*' element={<Unfound />} />
           <Route path={routes.home} element={<Home />} />

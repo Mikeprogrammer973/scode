@@ -38,8 +38,8 @@ export default function Decrypt(): JSX.Element
             <Spinner visible={spinnerV} />
             <MsgBox setVisible={setMsgBV} visible={msgBV} msg={alert} />
             <div className="w-full">
-                <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-2 lg:px-8">
-                    <div className="sm:mx-auto sm:w-full sm:max-w-sm bg-slate-200 p-7 rounded-lg shadow-lg dark:bg-slate-700">
+                <div className="flex min-h-screen items-center justify-center px-6 py-2 lg:px-8">
+                    <div className="w-[100%] md:w-[60%] bg-slate-200 p-7 rounded-lg shadow-lg dark:bg-slate-700">
                             <div className="my-4">
                                 <label htmlFor="txt" className="block text-sm font-medium leading-6 text-gray-800 dark:text-gray-300">
                                     Encrypted message

@@ -48,13 +48,13 @@ export default function Encrypt(): JSX.Element
             <Spinner visible={spinnerV} />
             <MsgBox visible={msgBV} msg={alert} setVisible={setMsgBV} />
             <div className="max-w-[100%] md:max-w-[60%] mx-auto p-5 rounded-lg shadow-lg bg-slate-200 dark:bg-slate-700">
-                <div className="h-full">
-                    <div  className="h-full w-full p-5">
+                <div className="min-h-screen flex items-center justify-center">
+                    <div  className="p-5 w-[100%] md:w-[60%]">
                         <div className="bg-blue-100 border-t-4 border-blue-500 text-blue-900 px-4 py-3 shadow-md">Type your text here</div>
-                        <textarea rows={10} onChange={e => {setTxt(e.target.value);}} value={format_str(txt)} className="block w-full rounded-b-md border-0 p-1.5 bg-transparent text-gray-800 dark:text-gray-200 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm sm:text-xl sm:leading-6"></textarea>
+                        <textarea rows={10} onChange={e => {setTxt(e.target.value);}} value={format_str(txt)} className="block w-full rounded-b-md border-0 p-1.5 bg-transparent text-gray-800 dark:text-gray-200 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm sm:text-xl sm:leading-6"></textarea>
                         <div className="my-4">
                             <p className="bg-blue-100 border-t-4 border-blue-500 text-blue-900 px-4 py-3 shadow-md">Type your pattern here</p>
-                            <input value={pattern} onChange={(e)=>{setPattern(e.target.value)}} type="text" className="block w-full rounded-b-md border-0 p-1.5 bg-transparent text-gray-800 dark:text-gray-200 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm sm:text-xl sm:leading-6"  />
+                            <input value={pattern} onChange={(e)=>{setPattern(e.target.value)}} type="text" className="block w-full rounded-b-md border-0 p-1.5 bg-transparent text-gray-800 dark:text-gray-200 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm sm:text-xl sm:leading-6"  />
                         </div>
                         <br />
                         <button onClick={()=> generateCrypt()} className="flex w-full justify-center rounded-md bg-gray-800 dark:bg-gray-100 px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm text-white dark:text-gray-700 hover:bg-gray-600 dark:hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">
