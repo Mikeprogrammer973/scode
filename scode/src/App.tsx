@@ -1,22 +1,24 @@
-import { Routes, Route, Link, useNavigate } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Documentation from './interface/Documentation';
 import Encrypt from './interface/Encrypt';
 import Decrypt from './interface/Decrypt';
 import Home from './interface/Home';
 import { useEffect, useState } from 'react';
-import { HandleHistory, routes } from './util/global';
+import { routes } from './util/global';
 import Header from './util/global/header';
 import Footer from './util/global/footer';
 import Unfound from './interface/Unfound';
 
 function App() {
 
-    const navigate = useNavigate()
-    const [dark, setDark] = useState(false)
+  const [dark, setDark] = useState(false)
 
-    useEffect(()=>{
-      HandleHistory(window.location.href, navigate)
-    }, [navigate])
+  useEffect(() => {
+    const theme = localStorage.getItem('scode-app-theme')
+    if (theme) {
+      setDark(theme === 'dark')
+    }
+  }, [])
 
   return (
     <div className={dark ? "dark" : "light"}>

@@ -42,10 +42,10 @@ export default class SCFrama extends Code
 
         key.split('').forEach(letter => {
             let symbol = symbols_ref[new Alphabet().normal().get().indexOf(letter)]
-            if(this.symbols.indexOf(symbol) == -1) this.symbols.push(symbol)
+            if(this.symbols.indexOf(symbol) === -1) this.symbols.push(symbol)
         })
         symbols_ref.forEach(symbol => {
-            if(this.symbols.indexOf(symbol) == -1) this.symbols.push(symbol)
+            if(this.symbols.indexOf(symbol) === -1) this.symbols.push(symbol)
         })
     }
 }

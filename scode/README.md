@@ -1,57 +1,109 @@
-# Função `encrypt_msg`
+<div align="center">
 
-A função `encrypt_msg` criptografa uma mensagem de acordo com um padrão fornecido. Ela suporta múltiplos métodos de criptografia, aplicando-os sequencialmente conforme definido pelo padrão.
+# SCode
 
-## Parâmetros
+**Hand-coding tools for classic ciphers.**
 
-- `pattern` (string): Uma string contendo símbolos, onde cada símbolo representa um método de criptografia específico.
-- `msg` (string): A mensagem que será criptografada.
+Encode and decode messages using manual methods — built for cryptography
+enthusiasts, learners, and anyone curious about how secrets were kept before
+computers.
 
-## Retorno
+[![License: MIT](https://img.shields.io/badge/License-MIT-lime.svg)](./LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 
-- Um objeto com as seguintes propriedades:
-  - `crypted_msg` (string): A mensagem criptografada.
-  - `decrypt_config` (string | null): Configuração necessária para descriptografar a mensagem, ou `null` se não houver configuração específica.
-  - `msg` (string): A mensagem original.
+[Live](https://scode.zyther.dev) · [Documentation](https://scode.zyther.dev/documentation) · [Report a bug](https://github.com/zytherdev/scode/issues)
 
-## Exemplo de Uso
+</div>
 
-```javascript
-import encrypt_msg from './caminho/para/o/arquivo';
+---
 
-const pattern = "$@#";
-const message = "Hello, World!";
-const result = encrypt_msg(pattern, message);
+## About
 
-console.log(result.crypted_msg); // Mensagem criptografada
-console.log(result.decrypt_config); // Configuração de descriptografia
-console.log(result.msg); // Mensagem original
+SCode is a web platform for encoding and decoding messages with **classic
+ciphers** — Enigma, Morse, Polybius, Vigenère, Bacon, Binary, Navajo, and more.
+Every cipher runs **entirely in your browser**: no accounts, no tracking, no
+data leaving your machine.
 
+Beyond individual ciphers, SCode introduces a **pattern system** that lets you
+compose multiple ciphers into a single chain — apply Enigma, then Morse, then
+reverse the result, all from one expression.
+
+## Features
+
+- **13+ ciphers** — from the WWII Enigma machine to the ancient Polybius square
+- **Pattern composition** — chain ciphers with symbols like `&§`, `°|#`, `?`
+- **Decode documents** — export the configuration needed to decrypt any message
+  as PDF, Word, or TXT
+- **Dark mode** — full support, system-aware
+- **100% client-side** — no backend, no telemetry
+
+## Tech stack
+
+- **React 18** + **TypeScript**
+- **Vite** for bundling
+- **Tailwind CSS** for styling
+- **React Router** for navigation
+
+## Getting started
+
+### Prerequisites
+
+- Node.js 18+
+- npm, pnpm, or yarn
+
+### Install
+
+```bash
+git clone https://github.com/zytherdev/scode.git
+cd scode
+npm install
 ```
 
-# Função `decrypt_msg`
+### Run
 
-A função `decrypt_msg` descriptografa uma mensagem de acordo com um padrão e configuração fornecidos. Ela suporta múltiplos métodos de descriptografia, aplicando-os sequencialmente conforme definido pelo padrão.
+```bash
+npm run dev
+```
 
-## Parâmetros
+Open [http://localhost:5173](http://localhost:5173).
 
-- `pattern` (string): Uma string contendo símbolos, onde cada símbolo representa um método de criptografia específico.
-- `config` (string | null): Configuração necessária para descriptografar a mensagem, ou `null` se não houver configuração específica.
-- `msg` (string): A mensagem que será descriptografada.
+### Build
 
-## Retorno
+```bash
+npm run build
+npm run preview
+```
 
-- Um elemento JSX que exibe a mensagem descriptografada ou uma mensagem de erro caso a descriptografia não seja bem-sucedida.
+## Roadmap
 
-## Exemplo de Uso
+- [x] Web app with 13+ ciphers
+- [x] Pattern composition system
+- [x] Decode document export (PDF / Word / TXT)
+- [ ] **Public API** — programmatic access to all ciphers
+- [ ] **npm package** — `@scode/core` for use in any JS/TS project
+- [ ] **CLI** — `scode encode --pattern "?" --message "hello"`
+- [ ] Plugin system for custom ciphers
 
-```javascript
-import decrypt_msg from './caminho/para/o/arquivo';
+## Contributing
 
-const pattern = "$@#";
-const config = "configuração correspondente";
-const message = "Mensagem criptografada";
-const result = decrypt_msg(pattern, config, message);
+Contributions are welcome — bug reports, new ciphers, docs, anything.
 
-// Renderiza o resultado em um componente React
+1. Fork the repo
+2. Create a branch (`git checkout -b feat/my-cipher`)
+3. Commit your changes (`git commit -m 'feat: add X cipher'`)
+4. Push (`git push origin feat/my-cipher`)
+5. Open a Pull Request
 
+Please follow the [Conventional Commits](https://www.conventionalcommits.org/) spec.
+
+## License
+
+MIT © [Zyther Dev](https://zyther.dev)
+
+---
+
+<div align="center">
+
+Built with ♥ for cryptography.
+
+</div>

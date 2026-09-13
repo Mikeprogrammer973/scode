@@ -22,7 +22,7 @@ export default class Alphabet
         do
         {
             let letter = alphabet[Math.round(Math.random() * 25)]
-            if(this.letters.indexOf(letter) == -1) this.letters.push(letter)
+            if(this.letters.indexOf(letter) === -1) this.letters.push(letter)
         }while(this.letters.length < 26);
         return this
     }

@@ -7,13 +7,14 @@ function generateGrid(gridSeq: string)
     let row: string[] = []
     do
     {
+        // eslint-disable-next-line no-loop-func, array-callback-return
         gridSeq.split('').map(l => {
-            if(row.length == 5)
+            if(row.length === 5)
             {
                 grid.push(row)
                 row = []
             }
-            if(l != "J") row.push(l)
+            if(l !== "J") row.push(l)
         })
 
         if(grid.length > 5) grid = []

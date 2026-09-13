@@ -1,7 +1,7 @@
 import { BrowserRouter as Router } from 'react-router-dom'
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import './style/App.css';
+import './style/index.css';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(

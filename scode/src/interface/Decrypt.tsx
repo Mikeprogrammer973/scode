@@ -1,99 +1,192 @@
 import { useState } from "react"
-import Spinner from "../util/global/spinner"
-import MsgBox from "../util/global/msgBox"
-import format_str from "../util/in/format_str"
 import valid_pattern from "../util/encrypt/verify_pattern"
-import { Alert } from "../util/global/alert"
-import decrypt_msg from "../util/decrypt/decrypt_msg"
+import decrypt_msg, { type DecryptResult } from "../util/decrypt/decrypt_msg"
+import { Container } from "../util/components/ui/container"
+import { Callout } from "../util/components/ui/callout"
 
-export default function Decrypt(): JSX.Element
-{
-    const [spinnerV, setSpinnerV] = useState<boolean>(false)
-    const [msgBV, setMsgBV] = useState<boolean>(false)
-    const [alert, setAlert] = useState<JSX.Element>(<div></div>)
-    const [txt, setTxt] = useState<string>("")
-    const [pattern, setPattern] = useState<string>("")
-    const [config, setConfig] = useState<string>("")
+export default function Decrypt() {
+  const [txt, setTxt] = useState("")
+  const [pattern, setPattern] = useState("")
+  const [config, setConfig] = useState("")
+  const [result, setResult] = useState<DecryptResult | null>(null)
 
-    function decrypt()
-    {
-        setSpinnerV(true)
-        setTimeout(()=>{
-            let msg: JSX.Element = <div></div>
-            if(valid_pattern(pattern))
-            {
-                msg = decrypt_msg(pattern, config, txt)
-                   
-            } else{
-                msg = <Alert color="danger" title="SCode Decrypt" msg={<div className="font-semibold text-lg my-4">Invalid encrypt pattern!</div>} />
-            }
-            setSpinnerV(false)
-            setAlert(msg)
-            setMsgBV(true)
-        }, 5000)
+  function handleDecrypt() {
+    if (!txt.trim()) {
+      setResult({ status: "empty" })
+      return
     }
+    if (!valid_pattern(pattern)) {
+      setResult({ status: "invalid-config" })
+      return
+    }
+    setResult(decrypt_msg(pattern, config || null, txt))
+  }
 
-    return(
-        <div>
-            <Spinner visible={spinnerV} />
-            <MsgBox setVisible={setMsgBV} visible={msgBV} msg={alert} />
-            <div className="w-full">
-                <div className="flex min-h-screen items-center justify-center px-6 py-2 lg:px-8">
-                    <div className="w-[100%] md:w-[60%] bg-slate-200 p-7 rounded-lg shadow-lg dark:bg-slate-700">
-                            <div className="my-4">
-                                <label htmlFor="txt" className="block text-sm font-medium leading-6 text-gray-800 dark:text-gray-300">
-                                    Encrypted message
-                                </label>
-                                <div className="mt-2">
-                                <textarea
-                                    onChange={e => {setTxt(e.target.value);}} value={txt}
-                                    rows={3}
-                                    id="txt"
-                                    className="block w-full rounded-md border-0 p-1.5 bg-transparent dark:text-gray-200 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm sm:text-xl sm:leading-6"
-                                ></textarea>
-                                </div>
-                            </div>
-                            <div className="my-4">
-                                <label htmlFor="config" className="block text-sm font-medium leading-6 text-gray-800 dark:text-gray-300">
-                                    Decryptage configuration
-                                </label>
-                                <div className="mt-2">
-                                <textarea
-                                    value={config}
-                                    onChange={e => setConfig(e.target.value)}
-                                    rows={5}
-                                    id="config"
-                                    className="block w-full rounded-md border-0 p-1.5 bg-transparent dark:text-gray-200 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm sm:text-xl sm:leading-6"
-                                ></textarea>
-                                </div>
-                            </div>
-                            <div className="my-4">
-                                <div className="flex items-center justify-between">
-                                <label htmlFor="pattern" className="block text-sm font-medium leading-6 text-gray-800 dark:text-gray-300">
-                                    Pattern
-                                </label>
-                                </div>
-                                <div className="mt-2">
-                                <input
-                                    value={pattern} onChange={(e)=>{setPattern(e.target.value)}}
-                                    id="pattern"
-                                    className="block w-full rounded-md border-0 p-1.5 bg-transparent dark:text-gray-200 text-gray-900 shadow-sm outline-gray-500 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm sm:text-xl sm:leading-6"
-                                />
-                                </div>
-                            </div>
-                            <div className="my-8">
-                                <button
-                                    onClick={()=>decrypt()}
-                                    type="submit"
-                                    className="flex w-full justify-center rounded-md bg-gray-800 dark:bg-gray-100 px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm text-white dark:text-gray-700 hover:bg-gray-600 dark:hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
-                                >
-                                    Decrypt message
-                                </button>
-                            </div>
-                    </div>
-                </div>
+  const canSubmit = txt.trim() && pattern.trim()
+
+  return (
+    <div className="relative isolate overflow-hidden bg-white dark:bg-[#0a0a0a]">
+      {/* grid de fundo */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.035] dark:opacity-[0.05]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+        }}
+      />
+      {/* glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-32 left-1/4 -z-10 h-[300px] w-[300px] rounded-full bg-gradient-to-br from-lime-300/20 via-transparent to-transparent blur-3xl sm:h-[500px] sm:w-[700px] dark:from-lime-400/[0.07]"
+      />
+
+      <Container className="py-16 md:py-24">
+        <div className="mx-auto max-w-3xl">
+          <header className="mb-12">
+            <div className="mb-4 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-lime-500 dark:bg-lime-400" />
+              <span>Decrypt · v1.0.0</span>
             </div>
-        </div>
-    )
+            <h1 className="text-4xl text-gray-800 dark:text-gray-100 font-semibold leading-[0.95] tracking-tighter sm:text-5xl">
+              Decrypt a message
+            </h1>
+            <p className="mt-4 text-lg leading-relaxed text-gray-600 dark:text-gray-400">
+              Paste the encrypted message, the pattern, and the configuration
+              parameters (if any) to recover the original text.
+            </p>
+          </header>
 
+          {/* form */}
+          <div className="rounded-2xl border border-gray-200 bg-white/60 p-6 backdrop-blur-sm sm:p-8 dark:border-white/[0.08] dark:bg-white/[0.02]">
+            {/* msg cifrada */}
+            <div className="mb-8">
+              <label
+                htmlFor="encrypted"
+                className="font-mono text-[10px] uppercase tracking-widest text-gray-500 dark:text-gray-500"
+              >
+                Encrypted message
+              </label>
+              <textarea
+                id="encrypted"
+                rows={4}
+                value={txt}
+                onChange={(e) => setTxt(e.target.value)}
+                placeholder="Paste the encrypted message here…"
+                className="mt-3 block w-full resize-none rounded-xl border border-gray-200 bg-white px-4 py-3 font-mono text-[15px] leading-relaxed text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-gray-900 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-gray-100 dark:placeholder:text-gray-600 dark:focus:border-lime-400"
+              />
+            </div>
+
+            {/* cfg */}
+            <div className="mb-8">
+              <label
+                htmlFor="config"
+                className="font-mono text-[10px] uppercase tracking-widest text-gray-500 dark:text-gray-500"
+              >
+                Decryption configuration
+              </label>
+              <textarea
+                id="config"
+                rows={5}
+                value={config}
+                onChange={(e) => setConfig(e.target.value)}
+                placeholder="Paste the configuration parameters (leave empty if not needed)…"
+                className="mt-3 block w-full resize-none rounded-xl border border-gray-200 bg-white px-4 py-3 font-mono text-[15px] leading-relaxed text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-gray-900 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-gray-100 dark:placeholder:text-gray-600 dark:focus:border-lime-400"
+              />
+              <p className="mt-3 text-xs text-gray-500 dark:text-gray-500">
+                Some ciphers (e.g.{" "}
+                <span className="font-mono">SCPolybe</span>,{" "}
+                <span className="font-mono">SCVigenère</span>) need extra
+                parameters to decode.
+              </p>
+            </div>
+
+            {/* ptern */}
+            <div className="mb-8">
+              <label
+                htmlFor="pattern"
+                className="font-mono text-[10px] uppercase tracking-widest text-gray-500 dark:text-gray-500"
+              >
+                Cipher pattern
+              </label>
+              <input
+                id="pattern"
+                type="text"
+                value={pattern}
+                onChange={(e) => setPattern(e.target.value)}
+                placeholder="e.g. ¬ or &§ or °|#"
+                className="mt-3 block w-full rounded-xl border border-gray-200 bg-white px-4 py-3 font-mono text-[15px] text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-gray-900 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-gray-100 dark:placeholder:text-gray-600 dark:focus:border-lime-400"
+              />
+              <p className="mt-3 text-xs text-gray-500 dark:text-gray-500">
+                Use the same pattern that was applied during encryption.{" "}
+                <a
+                  href="/documentation#pattern"
+                  className="underline decoration-dotted underline-offset-2 hover:text-gray-900 dark:hover:text-white"
+                >
+                  Pattern reference
+                </a>
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleDecrypt}
+              disabled={!canSubmit}
+              className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-gray-900 px-6 py-3 text-sm font-medium text-white transition-all hover:gap-3 hover:bg-gray-700 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-lime-400 dark:text-black dark:hover:bg-lime-300"
+            >
+              Decrypt message
+              <span className="transition-transform group-hover:translate-x-0.5">
+                →
+              </span>
+            </button>
+          </div>
+
+          {/* res */}
+          {result && (
+            <div className="mt-10">
+              {result.status === "empty" && (
+                <Callout variant="warning" title="Empty message">
+                  <p className="text-yellow-600 dark:text-yellow-400">Paste the encrypted message before decrypting.</p>
+                </Callout>
+              )}
+
+              {result.status === "invalid-config" && (
+                <Callout variant="warning" title="Invalid pattern">
+                  <p className="text-gray-800 dark:text-gray-100">
+                      <span className="text-red-600 dark:text-red-400">The cipher pattern or decode config isn't valid. Check the{" "}</span>
+                      <a
+                        href="/documentation#pattern"
+                        className="underline text-gray-600 dark:text-gray-400 decoration-dotted underline-offset-2"
+                      >
+                        pattern reference
+                      </a>
+                      .
+                  </p>
+                </Callout>
+              )}
+
+              {result.status === "error" && (
+                <Callout variant="warning" title="Decryption failed">
+                  <p className="text-red-600 dark:text-red-400">{result.message}</p>
+                </Callout>
+              )}
+
+              {result.status === "success" && (
+                <div className="rounded-2xl border border-lime-300/60 bg-lime-50/60 p-6 dark:border-lime-400/20 dark:bg-lime-400/[0.05]">
+                  <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-lime-700 dark:text-lime-400">
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-lime-500 dark:bg-lime-400" />
+                    Decrypted successfully
+                  </div>
+                  <pre className="mt-4 overflow-x-auto whitespace-pre-wrap break-all rounded-lg border border-lime-300/40 bg-white/60 p-4 text-sm leading-relaxed text-gray-900 dark:border-lime-400/20 dark:bg-black/20 dark:text-gray-100">
+                    {result.message}
+                  </pre>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </Container>
+    </div>
+  )
 }

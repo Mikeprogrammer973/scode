@@ -13,7 +13,7 @@ import Alphabet from "../refs/alphabet_reference"
 
 export default function encrypt_msg(pattern: string, msg: string): {crypted_msg: string, decrypt_config: string | null, msg: string}
 {
-    if(msg.length == 0)
+    if(msg.length === 0)
     {
         return {
             crypted_msg: "error",
@@ -28,6 +28,7 @@ export default function encrypt_msg(pattern: string, msg: string): {crypted_msg:
 
     function generateKey(): string
     {
+        // eslint-disable-next-line array-callback-return
         return new Alphabet().shuffle().get().map((l, i)=>{
             if(i < 10) return l
         }).join('')
