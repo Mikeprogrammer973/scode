@@ -1,29 +1,33 @@
 import { Link } from "react-router-dom"
-import { routes } from "../util/global"
+import { routes, version } from "../util/global"
 import { Container } from "../util/components/ui/container"
 import { Card } from "../util/components/ui/card"
 
 type Highlight = {
   title: string
   description: string
-  tag: string
+  tag: string,
+  info_url: string
 }
 
 const HIGHLIGHTS: Highlight[] = [
   {
     tag: "WWII cipher",
+    info_url: "https://en.wikipedia.org/wiki/Enigma_machine",
     title: "Enigma machine",
     description:
       "Cipher device developed and used in the early- to mid-20th century to protect commercial, diplomatic, and military communication.",
   },
   {
     tag: "Two-symbol system",
+    info_url: "https://en.wikipedia.org/wiki/Binary_code",
     title: "Binary code",
     description:
       'A binary code represents text, computer processor instructions, or any other data using a two-symbol system — often "0" and "1".',
   },
   {
     tag: "Ancient Greece",
+    info_url: "https://en.wikipedia.org/wiki/Polybius_square",
     title: "Polybius square",
     description:
       "A cipher device invented by the ancient Greeks Cleoxenus and Democleitus, and made famous by the historian and scholar Polybius.",
@@ -54,7 +58,7 @@ export default function Home() {
         <Container className="flex min-h-[calc(100vh-4rem)] flex-col justify-center py-24 md:py-32">
           <div className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-lime-500 dark:bg-lime-400" />
-            <span>Hand-coding tools · v1.0.0</span>
+            <span>Hand-coding tools · v{version}</span>
           </div>
 
           <h1 className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-tighter sm:text-7xl md:text-8xl lg:text-[7.5rem]">
@@ -157,10 +161,10 @@ export default function Home() {
                 <p className="mt-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
                   {item.description}
                 </p>
-                <div className="mt-8 flex items-center gap-2 text-xs font-medium text-gray-400 transition-colors group-hover:text-gray-900 dark:text-gray-500 dark:group-hover:text-lime-400">
+                <Link to={item.info_url} target="_blank" rel="noopener noreferrer" className="mt-8 cursor-pointer flex items-center gap-2 text-xs font-medium text-gray-400 transition-colors group-hover:text-gray-900 dark:text-gray-500 dark:group-hover:text-lime-400">
                   Explore
                   <span className="transition-transform group-hover:translate-x-0.5">→</span>
-                </div>
+                </Link>
               </Card>
             ))}
           </div>

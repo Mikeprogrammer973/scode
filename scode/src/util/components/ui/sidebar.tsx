@@ -45,7 +45,7 @@ export function DocsSidebar({ items, label = "Documentation" }: DocsSidebarProps
                   className={`group flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors ${
                     isActive
                       ? "bg-gray-100 text-gray-900 dark:bg-black/60 dark:text-white"
-                      : "text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                      : "text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-black/30 hover:text-gray-900 dark:hover:text-white"
                   }`}
                 >
                   <span

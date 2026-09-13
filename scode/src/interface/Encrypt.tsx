@@ -6,6 +6,7 @@ import { PdfContent } from "../util/out/PdfContent"
 import { Container } from "../util/components/ui/container"
 import { Callout } from "../util/components/ui/callout"
 import { Code } from "../util/components/ui/code"
+import { version } from "../util/global";
 
 type EncryptResult =
   | { status: "success"; msg: string; crypted: string; config: string }
@@ -70,7 +71,7 @@ export default function Encrypt() {
           <header className="mb-12">
             <div className="mb-4 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500">
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-lime-500 dark:bg-lime-400" />
-              <span>Encrypt · v1.0.0</span>
+              <span>Encrypt · v{version}</span>
             </div>
             <h1 className="text-4xl text-gray-800 dark:text-gray-100 font-semibold leading-[0.95] tracking-tighter sm:text-5xl">
               Encrypt a message

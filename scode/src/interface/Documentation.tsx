@@ -6,6 +6,7 @@ import { DocsSidebar } from "../util/components/ui/sidebar"
 import { DataTable } from "../util/components/ui/data-table"
 import { Callout } from "../util/components/ui/callout"
 import { Code } from "../util/components/ui/code"
+import { version } from "../util/global";
 
 type Example = { explanation: string; pattern: string }
 
@@ -51,23 +52,7 @@ export default function Documentation() {
   )
 
   return (
-    <div className="relative overflow-hidden bg-white dark:bg-[#0a0a0a]">
-      {/* bg */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.035] dark:opacity-[0.05]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-      />
-      {/* glow n/ tpo */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-32 left-1/4 -z-10 h-[500px] w-[700px] rounded-full bg-gradient-to-br from-lime-300/20 via-transparent to-transparent blur-3xl dark:from-lime-400/[0.07]"
-      />
-
+    <div className="relative bg-white dark:bg-[#0a0a0a]">
       <Container className="py-16 md:py-24">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[240px_1fr] lg:gap-16">
           <DocsSidebar items={NAV} />
@@ -76,7 +61,7 @@ export default function Documentation() {
             <header className="mb-16">
               <div className="mb-4 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-lime-500 dark:bg-lime-400" />
-                <span>Manual · v1.0.0</span>
+                <span>Manual · v{version}</span>
               </div>
               <h1 className="text-4xl text-black/80 dark:text-white/80 font-semibold leading-[0.95] tracking-tighter sm:text-5xl md:text-6xl">
                 Documentation
@@ -143,7 +128,7 @@ export default function Documentation() {
 
             {/* CIPHERS */}
             <Section id="ciphers" title="Ciphers" kicker="02 / Encoders">
-              <p>
+              <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
                 SCode offers multiple encoding modes that can be used
                 independently or — better yet — combined.
               </p>
@@ -324,7 +309,7 @@ export default function Documentation() {
 
             {/* PATTERN */}
             <Section id="pattern" title="Pattern" kicker="04 / Composition">
-              <p className="text-gray-800 dark:text-gray-50">
+              <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
                 A coding pattern is a combination of one or more symbols, each
                 referencing a specific cipher.
               </p>
@@ -381,7 +366,7 @@ export default function Documentation() {
 
             {/* DECRYPT */}
             <Section id="decrypt" title="Decrypt" kicker="05 / Decoding">
-              <p className="text-gray-800 dark:text-gray-50"> 
+              <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300"> 
                 Every encoding generated on SCode is followed by a document
                 with the settings needed to decode it.
               </p>
