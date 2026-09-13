@@ -1,0 +1,56 @@
+{
+  "name": "@zyther/scode-core",
+  "version": "0.1.0",
+  "description": "Hand-coding tools for classic ciphers — Enigma, Morse, Polybius, Vigenère, and more.",
+  "license": "MIT",
+  "author": "Zyther Dev <technopro.net@gmail.com>",
+  "homepage": "https://scode.zyther.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zytherdev/scode.git",
+    "directory": "npm"
+  },
+  "bugs": {
+    "url": "https://github.com/zytherdev/scode/issues"
+  },
+  "keywords": [
+    "cipher",
+    "cryptography",
+    "enigma",
+    "morse",
+    "polybius",
+    "vigenere",
+    "bacon",
+    "encryption",
+    "encoding",
+    "scode"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build && npm run test"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  }
+}
