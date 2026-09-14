@@ -129,7 +129,7 @@ A **pattern** is a string of cipher symbols applied in sequence. Patterns are ap
 °|#     Order.random, then Vigenère, then Polybius
 ```
 
-Symbols marked as **restricted** (`&`, `~`, `:`) can only appear at the end of a pattern — they transform the whole message and would break composition.
+Symbols marked as **restricted** (`¬`, `#`, `*`) can only appear at the end of a pattern — they transform the whole message and would break composition.
 
 ## Example: chained encoding
 
