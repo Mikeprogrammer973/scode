@@ -8,6 +8,8 @@ import { Callout } from "../util/components/ui/callout"
 import { Code } from "../util/components/ui/code"
 import { version } from "../util/global";
 
+import { encode } from "@zyther/scode-core"
+
 type EncryptResult =
   | { status: "success"; msg: string; crypted: string; config: string }
   | { status: "empty" }
@@ -47,6 +49,9 @@ export default function Encrypt() {
       })
     }
   }
+
+  console.log(encode({ message: "Love", pattern: "¬" }))
+
 
   return (
     <div className="relative isolate overflow-hidden bg-white dark:bg-[#0a0a0a]">
