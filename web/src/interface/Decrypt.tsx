@@ -19,11 +19,15 @@ export default function Decrypt() {
       setResult({ status: "invalid-config" })
       return
     }
-    setResult(decode({
-      encrypted: txt,
-      pattern,
-      config
-    }))
+    try {
+      setResult(decode({
+        encrypted: txt,
+        pattern,
+        config
+      }))
+    } catch (e: any) {
+      setResult({ status: "error", message: e.message })
+    }
   }
 
   const canSubmit = txt.trim() && pattern.trim()
