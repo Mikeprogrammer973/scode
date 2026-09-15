@@ -1,26 +1,29 @@
 import { useState } from "react"
-import valid_pattern from "../util/encrypt/verify_pattern"
-import decrypt_msg, { type DecryptResult } from "../util/decrypt/decrypt_msg"
 import { Container } from "../util/components/ui/container"
 import { Callout } from "../util/components/ui/callout"
 import { version } from "../util/global";
+import { decode, DecodeResult, validatePattern } from "@zyther/scode-core";
 
 export default function Decrypt() {
   const [txt, setTxt] = useState("")
   const [pattern, setPattern] = useState("")
   const [config, setConfig] = useState("")
-  const [result, setResult] = useState<DecryptResult | null>(null)
+  const [result, setResult] = useState<DecodeResult | null>(null)
 
   function handleDecrypt() {
     if (!txt.trim()) {
       setResult({ status: "empty" })
       return
     }
-    if (!valid_pattern(pattern)) {
+    if (!validatePattern(pattern)) {
       setResult({ status: "invalid-config" })
       return
     }
-    setResult(decrypt_msg(pattern, config || null, txt))
+    setResult(decode({
+      encrypted: txt,
+      pattern,
+      config
+    }))
   }
 
   const canSubmit = txt.trim() && pattern.trim()

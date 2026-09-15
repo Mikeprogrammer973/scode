@@ -1,5 +1,4 @@
 import { useMemo } from "react"
-import PatternSymbols from "../util/refs/pattern_symbols_refs"
 import { Container } from "../util/components/ui/container"
 import { Section, SubSection } from "../util/components/ui/section"
 import { DocsSidebar } from "../util/components/ui/sidebar"
@@ -7,6 +6,8 @@ import { DataTable } from "../util/components/ui/data-table"
 import { Callout } from "../util/components/ui/callout"
 import { Code } from "../util/components/ui/code"
 import { version } from "../util/global";
+
+import { allGlobalSymbols, allSymbols, allNames } from "@zyther/scode-core"
 
 type Example = { explanation: string; pattern: string }
 
@@ -34,11 +35,11 @@ const NAV = [
 
 export default function Documentation() {
   const { symbols, names, globalSymbols } = useMemo(() => {
-    const all = PatternSymbols.all()
+    const all = allSymbols()
     return {
       symbols: all,
-      names: PatternSymbols.all_names(),
-      globalSymbols: PatternSymbols.global(),
+      names: allNames(),
+      globalSymbols: allGlobalSymbols(),
     }
   }, [])
 

@@ -12,11 +12,11 @@ npm install @zyther/scode-core
 ## Usage
 
 ```ts
-import { encode, decode } from "@zyther/scode-core"
+import { encode, decode, format_str } from "@zyther/scode-core"
 
 // Encode
 const result = encode({
-  message: "hello world",
+  message: format_str("hello world"),
   pattern: "¬",             // Morse code
 })
 
@@ -30,7 +30,7 @@ const decoded = decode({
   config: result.config,
 })
 
-console.log(decoded.message)  // "hello world"
+console.log(decoded.message)  // "HELLOWORLD"
 ```
 
 ## API
@@ -134,10 +134,10 @@ Symbols marked as **restricted** (`¬`, `#`, `*`) can only appear at the end of 
 ## Example: chained encoding
 
 ```ts
-import { encode, decode } from "@zyther/scode-core"
+import { encode, decode, format_str } from "@zyther/scode-core"
 
 const { encrypted, config, pattern } = encode({
-  message: "meet me at dawn",
+  message: format_str("meet me at dawn"),
   pattern: "?|",            // Enigma, then Vigenère
 })
 
@@ -145,7 +145,7 @@ console.log(encrypted)
 console.log(config)         // space-separated tokens needed for decode
 
 const { message } = decode({ encrypted, pattern, config })
-console.log(message)        // "meet me at dawn"
+console.log(message)        // "MEETMEATDAWN"
 ```
 
 ## Exports

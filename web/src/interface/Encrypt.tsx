@@ -1,13 +1,11 @@
 import { useState } from "react"
-import valid_pattern from "../util/encrypt/verify_pattern"
-import encrypt_msg from "../util/encrypt/encrypt_msg"
 import { PdfContent } from "../util/out/PdfContent"
 import { Container } from "../util/components/ui/container"
 import { Callout } from "../util/components/ui/callout"
 import { Code } from "../util/components/ui/code"
 import { version } from "../util/global";
 
-import { encode, format_str } from "@zyther/scode-core"
+import { encode as crypt, format_str, validatePattern } from "@zyther/scode-core"
 
 type EncryptResult =
   | { status: "success"; msg: string; crypted: string; config: string }
@@ -25,21 +23,17 @@ export default function Encrypt() {
       setResult({ status: "empty" })
       return
     }
-    if (!valid_pattern(pattern)) {
+    if (!validatePattern(pattern)) {
       setResult({ status: "invalid" })
       return
     }
     try {
-      const encode = encrypt_msg(pattern, format_str(txt))
-      if (encode.crypted_msg === "error") {
-        setResult({ status: "error", message: "Could not encrypt the message." })
-        return
-      }
+      const encode = crypt({ message: format_str(txt), pattern })
       setResult({
         status: "success",
-        msg: encode.msg,
-        crypted: encode.crypted_msg,
-        config: encode.decrypt_config as string,
+        msg: encode.message,
+        crypted: encode.encrypted,
+        config: encode.config!,
       })
     } catch (e) {
       setResult({

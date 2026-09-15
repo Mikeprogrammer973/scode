@@ -1,6 +1,6 @@
 {
   "name": "@zyther/scode-core",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Hand-coding tools for classic ciphers — Enigma, Morse, Polybius, Vigenère, and more.",
   "license": "MIT",
   "author": "Zyther Dev <zyther.dev@outlook.com>",
