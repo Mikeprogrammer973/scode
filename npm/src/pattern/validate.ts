@@ -1,5 +1,10 @@
 import PatternSymbols from "../refs/pattern_symbols_refs"
 
+/**
+ * Check if a pattern is valid
+ * @param pattern
+ * @returns boolean
+ */
 export function validatePattern(pattern: string): boolean {
   if (!pattern || pattern.length === 0) return false
 
@@ -13,6 +18,12 @@ export function validatePattern(pattern: string): boolean {
   return true
 }
 
+/**
+ * Check if a decode config is valid
+ * @param pattern 
+ * @param config 
+ * @returns boolean
+ */
 export function validateConfig(pattern: string, config: string | null): boolean {
   const wConfig = pattern
     .split("")

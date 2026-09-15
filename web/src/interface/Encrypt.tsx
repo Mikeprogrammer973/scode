@@ -1,5 +1,4 @@
 import { useState } from "react"
-import format_str from "../util/in/format_str"
 import valid_pattern from "../util/encrypt/verify_pattern"
 import encrypt_msg from "../util/encrypt/encrypt_msg"
 import { PdfContent } from "../util/out/PdfContent"
@@ -8,7 +7,7 @@ import { Callout } from "../util/components/ui/callout"
 import { Code } from "../util/components/ui/code"
 import { version } from "../util/global";
 
-import { encode } from "@zyther/scode-core"
+import { encode, format_str } from "@zyther/scode-core"
 
 type EncryptResult =
   | { status: "success"; msg: string; crypted: string; config: string }
@@ -49,9 +48,6 @@ export default function Encrypt() {
       })
     }
   }
-
-  console.log(encode({ message: "Love", pattern: "¬" }))
-
 
   return (
     <div className="relative isolate overflow-hidden bg-white dark:bg-[#0a0a0a]">

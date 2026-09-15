@@ -15,6 +15,22 @@ import SCVigenere from "./ciphers/type/SCVigenere";
 import { validateConfig, validatePattern } from "./pattern/validate";
 import type { DecodeOptions, DecodeResult } from "./types";
 
+/**
+ * Decrypt a message
+ * @param DecodeOptions options
+ * @param {string} options.encrypted value to decrypt
+ * @param {string} options.pattern pattern to use
+ * @param {object} options.config config to use
+ * @returns DecodeResult
+ * @throws Error
+ * - if the message is empty
+ * - if the pattern is invalid
+ * - if the config is invalid
+ * - if the pattern is not supported
+ * - if the config is not supported
+ * - if the config is not valid for the pattern
+ * - if the config is not valid for the cipher
+ */
 export function decrypt(
   { encrypted, pattern, config } : DecodeOptions
 ): DecodeResult {

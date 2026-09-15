@@ -1,3 +1,8 @@
+/**
+ * @author Zyther Dev <zyther.dev@outlook.com>
+ * @alias zytherdev <https://github.com/zytherdev>
+ */
+
 import Alphabet from "./refs/alphabet_reference";
 
 export { decrypt as decode } from "./decrypt";

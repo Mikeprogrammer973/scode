@@ -758,6 +758,22 @@ function decrypt({ encrypted, pattern, config }) {
   }
 }
 
+// src/utils/in/verify_char.ts
+function valid_char(char) {
+  if (new Alphabet().normal().get().indexOf(char) !== -1) return true;
+  return false;
+}
+
+// src/utils/in/format_str.ts
+function format_str(str) {
+  str = str.toUpperCase().trim();
+  let formated_str = "";
+  for (let i = 0; i < str.length; i++) {
+    if (valid_char(str[i])) formated_str += str[i];
+  }
+  return formated_str;
+}
+
 // src/encrypt.ts
 function encrypt({ message, pattern }) {
   if (message.length === 0) {
@@ -767,7 +783,7 @@ function encrypt({ message, pattern }) {
     throw new Error("Invalid pattern");
   }
   let decrypt_config = "";
-  let crypted = message;
+  let crypted = format_str(message);
   let key = "";
   function generateKey() {
     return new Alphabet().shuffle().get().map((l, i) => {
@@ -883,26 +899,13 @@ function allSymbols() {
 function allGlobalSymbols() {
   return PatternSymbols.global();
 }
+function allSymbolsWithConfig() {
+  return PatternSymbols.with_config();
+}
 function allNames() {
   return PatternSymbols.all_names();
 }
 
-// src/utils/in/verify_char.ts
-function valid_char(char) {
-  if (new Alphabet().normal().get().indexOf(char) !== -1) return true;
-  return false;
-}
-
-// src/utils/in/format_str.ts
-function format_str(str) {
-  str = str.toUpperCase().trim();
-  let formated_str = "";
-  for (let i = 0; i < str.length; i++) {
-    if (valid_char(str[i])) formated_str += str[i];
-  }
-  return formated_str;
-}
-
-export { Alphabet, CIPHERS, allGlobalSymbols, allNames, allSymbols, decrypt as decode, encrypt as encode, format_str, isSymbolGlobal, isSymbolValid, listCiphers, symbolNeedsConfig, valid_char, validateConfig, validatePattern };
+export { Alphabet, CIPHERS, allGlobalSymbols, allNames, allSymbols, allSymbolsWithConfig, decrypt as decode, encrypt as encode, format_str, isSymbolGlobal, isSymbolValid, listCiphers, symbolNeedsConfig, valid_char, validateConfig, validatePattern };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

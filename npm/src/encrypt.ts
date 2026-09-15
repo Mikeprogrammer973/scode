@@ -13,7 +13,17 @@ import SCVigenere from "./ciphers/type/SCVigenere";
 import { validatePattern } from "./pattern/validate";
 import Alphabet from "./refs/alphabet_reference";
 import type { EncodeOptions, EncodeResult } from "./types";
+import { format_str } from "./utils/in/format_str";
 
+/**
+ * Encrypts a message using a given pattern
+ * @param EncodeOptions options
+ * @param {string} options.message The message to encode
+ * @param {string} options.pattern The pattern to use for encoding the message
+ * @returns EncodeResult
+ * @throws Error 
+ * - if the message is empty or the pattern is invalid
+ */
 export function encrypt({ message, pattern }: EncodeOptions): EncodeResult
 {
     if(message.length === 0)
@@ -26,7 +36,7 @@ export function encrypt({ message, pattern }: EncodeOptions): EncodeResult
     }
 
     let decrypt_config: string  = ""
-    let crypted: string = message
+    let crypted: string = format_str(message)
     let key: string = ""
 
     function generateKey(): string

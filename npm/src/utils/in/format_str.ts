@@ -1,5 +1,14 @@
 import { valid_char } from "./verify_char"
 
+
+/**
+ * Format a string to be used in the encryption process
+ * - Remove all spaces
+ * - Convert to uppercase
+ * - Remove all non valid characters
+ * @param str 
+ * @returns string
+ */
 export function format_str(str: string): string
 {
     str = str.toUpperCase().trim()

@@ -1,6 +1,9 @@
 
 const alphabet: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
+/**
+ * Reference class for the alphabet
+ */
 export default class Alphabet
 {
     private letters: string[] = []
